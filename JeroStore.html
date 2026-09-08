@@ -1257,9 +1257,23 @@
         setTimeout(() => conf.remove(), 4000);
       }
     }
-
-    // ---------- INICIALIZAR ----------
+// ---------- SESIÓN ÚNICA ----------
+const storedUser = JSON.parse(localStorage.getItem('jeroUser'));
+if (storedUser && storedUser.user) {
+    // Ocultar login y usar el usuario de localStorage
+    document.getElementById('authOverlay').style.display = 'none';
+    // Asignar el usuario (las variables varían según la página)
+    // Para JeroStore:
+    user = { nombre: storedUser.nombre, alias: storedUser.user, jeroCoins: 0 };
+    isGuest = false;
+    document.getElementById('labelName').innerText = storedUser.nombre;
+    document.getElementById('jeroBadge').style.display = 'block';
+    // Luego cargar datos sin login
     init();
+} else {
+    // Mostrar login normal
+}
+    // ---------- INICIALIZAR ----------
   </script>
 </body>
 </html>
