@@ -4,20 +4,13 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Estrellas Jerovia · Asamblea N°9</title>
-    <!-- Google Fonts -->
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;1,400&family=Montserrat:wght@300;400;500;600;700&display=swap" rel="stylesheet" />
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;1,400&family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet" />
     <style>
-        /* ---------- Reset y base ---------- */
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-        }
-
+        * { margin: 0; padding: 0; box-sizing: border-box; }
         body {
-            font-family: 'Montserrat', sans-serif;
+            font-family: 'Inter', sans-serif;
             background: radial-gradient(circle at top, #4a192c 0%, #1a0b14 100%);
             min-height: 100vh;
             color: white;
@@ -27,347 +20,200 @@
             overflow-x: hidden;
             padding-bottom: 100px;
         }
-
-        /* ---------- Arcoíris animado (común con otras páginas) ---------- */
         .rainbow-bar {
             width: 100%;
-            height: 6px;
-            background: linear-gradient(90deg,
-                #D8303B, #F58634, #FFE61C, #00A859, #00AFEF, #0065A0, #727CB6);
+            height: 4px;
+            background: linear-gradient(90deg, #D8303B, #F58634, #FFE61C, #00A859, #00AFEF, #0065A0, #727CB6);
             background-size: 300% 100%;
             animation: arcoirisMove 6s ease-in-out infinite alternate;
-            box-shadow: 0 4px 20px rgba(216, 48, 59, 0.2);
-            flex-shrink: 0;
+            opacity: 0.4;
         }
-        @keyframes arcoirisMove {
-            0% { background-position: 0% 50%; }
-            100% { background-position: 100% 50%; }
-        }
-
-        /* ---------- Contenedor principal ---------- */
+        @keyframes arcoirisMove { 0% { background-position: 0% 50%; } 100% { background-position: 100% 50%; } }
         .container {
             max-width: 900px;
             width: 100%;
-            padding: 1.5rem 1.5rem 1rem;
-            background: rgba(255, 255, 255, 0.04);
+            padding: 1.5rem;
+            background: rgba(255,255,255,0.03);
             backdrop-filter: blur(4px);
-            -webkit-backdrop-filter: blur(4px);
-            border-radius: 0 0 40px 40px;
-            border: 1px solid rgba(255, 255, 255, 0.06);
-            margin-top: 0;
+            border-radius: 0 0 32px 32px;
+            border: 1px solid rgba(255,255,255,0.06);
             flex: 1;
         }
-
-        /* ---------- Encabezado ---------- */
-        header {
-            text-align: center;
-            padding: 1.5rem 0 1rem;
-        }
+        header { text-align: center; padding: 1rem 0; }
         header h1 {
             font-family: 'Playfair Display', serif;
             font-weight: 700;
-            font-size: 2.8rem;
+            font-size: 2.4rem;
             color: #ff7eb3;
-            text-shadow: 0 0 20px rgba(255, 126, 179, 0.4);
-            margin: 0;
+            text-shadow: 0 0 20px rgba(255,126,179,0.15);
             letter-spacing: 1px;
         }
         header .subtitle {
-            font-family: 'Montserrat', sans-serif;
             font-weight: 300;
-            font-size: 1rem;
+            font-size: 0.9rem;
             color: #ffb3c6;
-            letter-spacing: 2px;
+            letter-spacing: 0.5px;
             margin-top: 0.2rem;
         }
-        header .subtitle strong {
-            font-weight: 600;
-            color: #ff7eb3;
-        }
-
-        /* ---------- Login ---------- */
         #login-section {
-            margin: 1.5rem auto 0;
-            background: rgba(255, 255, 255, 0.05);
-            padding: 2rem 1.8rem;
-            border-radius: 30px;
-            backdrop-filter: blur(12px);
-            border: 1px solid rgba(255, 126, 179, 0.2);
+            margin: 1.5rem auto;
+            background: rgba(255,255,255,0.04);
+            padding: 2rem;
+            border-radius: 24px;
+            backdrop-filter: blur(8px);
+            border: 1px solid rgba(255,126,179,0.1);
             max-width: 380px;
             text-align: center;
-            box-shadow: 0 10px 40px rgba(0,0,0,0.4);
         }
         #login-section .login-title {
             font-family: 'Playfair Display', serif;
             color: #ffb3c6;
-            font-size: 1.4rem;
+            font-size: 1.3rem;
             margin-bottom: 0.3rem;
         }
         #login-section .login-sub {
-            font-size: 0.85rem;
-            color: rgba(255, 255, 255, 0.6);
-            margin-bottom: 1.2rem;
+            font-size: 0.8rem;
+            color: rgba(255,255,255,0.5);
+            margin-bottom: 1rem;
         }
         #login-section input {
             width: 100%;
-            padding: 12px 16px;
+            padding: 10px 14px;
             margin: 6px 0;
-            border-radius: 60px;
-            border: 2px solid rgba(255, 126, 179, 0.3);
+            border-radius: 12px;
+            border: 1.5px solid rgba(255,126,179,0.15);
             background: rgba(255,255,255,0.9);
             color: #1a0b14;
-            font-family: 'Montserrat', sans-serif;
-            font-size: 0.95rem;
+            font-family: 'Inter', sans-serif;
+            font-size: 0.9rem;
             outline: none;
-            transition: 0.3s;
-            box-sizing: border-box;
+            transition: 0.2s;
         }
         #login-section input:focus {
             border-color: #ff7eb3;
-            box-shadow: 0 0 0 4px rgba(255, 126, 179, 0.15);
-        }
-        #login-section input::placeholder {
-            color: #888;
+            box-shadow: 0 0 0 3px rgba(255,126,179,0.06);
         }
         #login-error-msg {
             color: #ff6b6b;
-            font-size: 0.8rem;
-            font-weight: 600;
+            font-size: 0.75rem;
+            font-weight: 500;
             margin: 6px 0 0;
             display: none;
-            text-shadow: 0 0 8px rgba(0,0,0,0.6);
+            text-shadow: 0 0 8px rgba(0,0,0,0.4);
         }
         .btn-magico {
             background: linear-gradient(45deg, #ff7eb3, #ff5285);
             color: white;
             border: none;
-            padding: 14px 25px;
-            border-radius: 60px;
+            padding: 12px;
+            border-radius: 12px;
             font-weight: 600;
             cursor: pointer;
             width: 100%;
-            margin-top: 16px;
-            transition: 0.3s;
+            margin-top: 12px;
+            transition: 0.25s;
             text-transform: uppercase;
-            letter-spacing: 1.5px;
-            font-size: 0.9rem;
-            box-shadow: 0 6px 20px rgba(255, 82, 133, 0.35);
+            letter-spacing: 0.5px;
+            font-size: 0.85rem;
+            box-shadow: 0 6px 20px rgba(255,82,133,0.15);
         }
-        .btn-magico:hover {
-            transform: translateY(-3px);
-            box-shadow: 0 10px 30px rgba(255, 82, 133, 0.5);
-        }
-        .btn-magico.btn-cancelar {
-            background: transparent;
-            border: 2px solid rgba(255, 179, 198, 0.4);
-            color: #ffb3c6;
-            box-shadow: none;
-        }
-        .btn-magico.btn-cancelar:hover {
-            background: rgba(255, 179, 198, 0.1);
-            transform: translateY(-2px);
-            box-shadow: 0 6px 20px rgba(255, 179, 198, 0.1);
-        }
+        .btn-magico:hover { transform: translateY(-2px); box-shadow: 0 10px 30px rgba(255,82,133,0.2); }
+        .btn-magico.btn-cancelar { background: transparent; border: 1.5px solid rgba(255,179,198,0.2); color: #ffb3c6; box-shadow: none; }
+        .btn-magico.btn-cancelar:hover { background: rgba(255,179,198,0.05); }
 
-        /* ---------- Sección de Votación ---------- */
-        #vote-section {
-            display: none;
-            padding: 1.5rem 0.5rem;
-            justify-content: center;
-            flex-wrap: wrap;
-            gap: 16px;
-        }
+        #vote-section { display: none; padding: 1.5rem 0.5rem; justify-content: center; flex-wrap: wrap; gap: 12px; }
         .hermana-bubble {
-            background: rgba(255, 255, 255, 0.06);
-            border: 1px solid rgba(255, 126, 179, 0.3);
-            padding: 14px 24px;
-            border-radius: 60px;
+            background: rgba(255,255,255,0.04);
+            border: 1px solid rgba(255,126,179,0.15);
+            padding: 12px 20px;
+            border-radius: 30px;
             cursor: pointer;
-            transition: 0.3s;
+            transition: 0.25s;
             animation: float 4s ease-in-out infinite;
             display: flex;
             flex-direction: column;
             justify-content: center;
             align-items: center;
-            min-height: 55px;
-            box-sizing: border-box;
-            text-align: center;
+            min-height: 48px;
             font-family: 'Playfair Display', serif;
-            font-size: 1.1rem;
+            font-size: 1rem;
             color: #fff;
-            text-shadow: 0 0 10px rgba(255, 126, 179, 0.2);
+            text-shadow: 0 0 10px rgba(255,126,179,0.05);
         }
         .hermana-bubble:hover:not(.hermana-ausente) {
             background: #ff7eb3;
             color: #1a0b14;
-            transform: scale(1.1) !important;
-            box-shadow: 0 0 30px rgba(255, 126, 179, 0.5);
+            transform: scale(1.05);
+            box-shadow: 0 0 30px rgba(255,126,179,0.1);
             text-shadow: none;
         }
         .hermana-ausente {
-            font-family: 'Montserrat', sans-serif;
-            background: rgba(100, 100, 100, 0.08);
-            border-color: rgba(255,255,255,0.08);
-            color: rgba(255,255,255,0.2);
+            font-family: 'Inter', sans-serif;
+            background: rgba(100,100,100,0.05);
+            border-color: rgba(255,255,255,0.04);
+            color: rgba(255,255,255,0.12);
             cursor: not-allowed;
             animation: none !important;
-            font-size: 0.95rem;
+            font-size: 0.9rem;
         }
-        .hermana-ausente:hover {
-            background: rgba(100, 100, 100, 0.08);
-            transform: none !important;
-            box-shadow: none;
-        }
-        .texto-ausente {
-            font-size: 0.65rem;
-            margin-top: 2px;
-            opacity: 0.5;
-            font-weight: 300;
-            letter-spacing: 1px;
-        }
-        @keyframes float {
-            0%, 100% { transform: translateY(0); }
-            50% { transform: translateY(-8px); }
-        }
+        .hermana-ausente:hover { transform: none !important; box-shadow: none; }
+        .texto-ausente { font-size: 0.6rem; margin-top: 2px; opacity: 0.3; font-weight: 300; letter-spacing: 0.5px; }
+        @keyframes float { 0%, 100% { transform: translateY(0); } 50% { transform: translateY(-6px); } }
 
-        /* ---------- Overlays (modales y pantallas) ---------- */
         .fullscreen-overlay {
-            position: fixed;
-            top: 0; left: 0;
-            width: 100%; height: 100%;
-            background: rgba(26, 11, 20, 0.95);
-            backdrop-filter: blur(12px);
-            display: none;
-            flex-direction: column;
-            justify-content: center;
-            align-items: center;
-            z-index: 1000;
-            text-align: center;
-            padding: 20px;
-            box-sizing: border-box;
+            position: fixed; top: 0; left: 0; width: 100%; height: 100%;
+            background: rgba(26,11,20,0.92); backdrop-filter: blur(8px);
+            display: none; flex-direction: column; justify-content: center; align-items: center;
+            z-index: 1000; text-align: center; padding: 20px;
         }
         .modal-box {
-            background: rgba(255, 255, 255, 0.06);
-            padding: 2.5rem 2rem;
-            border-radius: 30px;
-            border: 2px solid rgba(255, 179, 198, 0.2);
+            background: rgba(255,255,255,0.04);
+            padding: 2rem;
+            border-radius: 24px;
+            border: 1px solid rgba(255,179,198,0.08);
             max-width: 400px;
             width: 90%;
-            box-shadow: 0 0 40px rgba(255, 126, 179, 0.1);
         }
-        .modal-box h2 {
-            color: #ffb3c6;
-            font-family: 'Playfair Display', serif;
-            font-size: 1.4rem;
-            margin-top: 0;
-            margin-bottom: 0.5rem;
-        }
-        .modal-box p {
-            color: rgba(255,255,255,0.7);
-            font-size: 0.95rem;
-            margin-bottom: 1.5rem;
-        }
-        .botones-modal {
-            display: flex;
-            gap: 15px;
-            justify-content: center;
-        }
-        .botones-modal .btn-magico {
-            width: auto;
-            padding: 12px 30px;
-            flex: 1;
-        }
+        .modal-box h2 { color: #ffb3c6; font-family: 'Playfair Display', serif; font-size: 1.3rem; margin-bottom: 0.5rem; }
+        .modal-box p { color: rgba(255,255,255,0.5); font-size: 0.9rem; margin-bottom: 1.2rem; }
+        .botones-modal { display: flex; gap: 12px; justify-content: center; }
+        .botones-modal .btn-magico { width: auto; padding: 10px 24px; flex: 1; }
 
-        /* Pantalla de estrella animada */
-        #star-anim-screen {
-            background: radial-gradient(circle at center, #4a192c 0%, #1a0b14 100%);
-            z-index: 2000;
-        }
-        .giant-star {
-            font-size: 5rem;
-            filter: drop-shadow(0 0 30px #ffea00);
-            animation: explodeStar 2s forwards ease-in-out;
-        }
+        #star-anim-screen { background: radial-gradient(circle at center, #4a192c 0%, #1a0b14 100%); z-index: 2000; }
+        .giant-star { font-size: 4rem; filter: drop-shadow(0 0 30px #ffea00); animation: explodeStar 2s forwards ease-in-out; }
         @keyframes explodeStar {
             0% { transform: scale(0) rotate(0deg); opacity: 0; }
-            50% { transform: scale(15) rotate(180deg); opacity: 1; }
-            100% { transform: scale(50) rotate(360deg); opacity: 0; }
+            50% { transform: scale(12) rotate(180deg); opacity: 1; }
+            100% { transform: scale(40) rotate(360deg); opacity: 0; }
         }
 
-        /* Mensajes de éxito y error */
-        .mensaje-titulo {
-            font-family: 'Playfair Display', serif;
-            font-size: 2.8rem;
-            color: #ff7eb3;
-            text-shadow: 0 0 30px rgba(255, 126, 179, 0.3);
-            margin-bottom: 0.5rem;
-        }
-        .mensaje-sub {
-            font-size: 1.2rem;
-            color: rgba(255,255,255,0.8);
-            margin-bottom: 2rem;
-        }
-        .mensaje-chico {
-            font-size: 0.85rem;
-            color: rgba(255, 179, 198, 0.6);
-            max-width: 80%;
-            margin: 1rem auto 2rem;
-        }
+        .mensaje-titulo { font-family: 'Playfair Display', serif; font-size: 2.4rem; color: #ff7eb3; text-shadow: 0 0 30px rgba(255,126,179,0.15); margin-bottom: 0.3rem; }
+        .mensaje-sub { font-size: 1rem; color: rgba(255,255,255,0.7); margin-bottom: 1.5rem; }
+        .mensaje-chico { font-size: 0.8rem; color: rgba(255,179,198,0.4); max-width: 80%; margin: 1rem auto; }
 
-        /* ---------- Footer institucional (unificado) ---------- */
         .footer {
             max-width: 900px;
             width: 100%;
             margin: 2rem auto 0;
-            padding: 1.2rem 1.5rem 0.5rem;
+            padding: 1rem 1.5rem 0.3rem;
             text-align: center;
-            font-size: 0.8rem;
-            font-weight: 400;
-            letter-spacing: 0.5px;
-            border-top: 1px solid rgba(255, 179, 198, 0.08);
-            line-height: 1.8;
-            color: rgba(255, 255, 255, 0.3);
-            flex-shrink: 0;
-        }
-        .footer .rainbow-dots {
-            display: inline-flex;
-            gap: 6px;
-            margin-bottom: 0.5rem;
-        }
-        .footer .rainbow-dots span {
-            width: 8px;
-            height: 8px;
-            border-radius: 50%;
-            display: inline-block;
-        }
-        .footer .linea-orden {
-            color: rgba(255, 255, 255, 0.3);
-            font-weight: 400;
-        }
-        .footer .linea-asamblea {
-            color: #ff7eb3;
-            font-weight: 500;
-        }
-        .footer .linea-jurisdiccion {
-            color: #6cb4ee;
-            font-weight: 400;
-        }
-        .footer .credito {
-            margin-top: 0.3rem;
-            opacity: 0.4;
             font-size: 0.7rem;
-            color: rgba(255, 255, 255, 0.2);
+            color: rgba(255,255,255,0.2);
+            border-top: 1px solid rgba(255,179,198,0.04);
+            line-height: 1.6;
         }
+        .footer .rainbow-dots { display: inline-flex; gap: 4px; margin-bottom: 0.2rem; }
+        .footer .rainbow-dots span { width: 6px; height: 6px; border-radius: 50%; display: inline-block; opacity: 0.4; }
+        .footer .linea-orden { color: rgba(255,255,255,0.15); }
+        .footer .linea-asamblea { color: #ff7eb3; font-weight: 400; }
+        .footer .linea-jurisdiccion { color: #6cb4ee; font-weight: 300; }
+        .footer .credito { opacity: 0.25; font-size: 0.6rem; margin-top: 0.2rem; }
 
-        /* ---------- Utilidades ---------- */
-        .hidden { display: none !important; }
-
-        /* ---------- Responsive ---------- */
         @media (max-width: 640px) {
             header h1 { font-size: 2rem; }
-            #login-section { padding: 1.5rem 1.2rem; }
-            .hermana-bubble { font-size: 1rem; padding: 12px 18px; min-height: 48px; }
-            .modal-box { padding: 1.8rem 1.2rem; }
+            #login-section { padding: 1.2rem; }
+            .hermana-bubble { font-size: 0.9rem; padding: 10px 16px; }
+            .modal-box { padding: 1.2rem; }
             .botones-modal { flex-direction: column; }
             .botones-modal .btn-magico { width: 100%; }
             .mensaje-titulo { font-size: 2rem; }
@@ -376,19 +222,15 @@
 </head>
 <body>
 
-    <!-- Arcoíris animado (común) -->
     <div class="rainbow-bar"></div>
 
-    <!-- Contenedor principal -->
     <div class="container">
 
-        <!-- Encabezado -->
         <header>
             <h1>Estrellas Jerovia</h1>
-            <p class="subtitle">Reconoce el brillo de una hermana · <strong>✨</strong></p>
+            <p class="subtitle">Reconoce el brillo de una hermana · ✨</p>
         </header>
 
-        <!-- Login -->
         <div id="login-section">
             <div class="login-title">✨ Inicia sesión</div>
             <div class="login-sub">Con tu usuario y contraseña de la Asamblea</div>
@@ -398,12 +240,10 @@
             <button class="btn-magico" onclick="acceder()">Validar Identidad</button>
         </div>
 
-        <!-- Sección de votación -->
         <div id="vote-section"></div>
 
     </div>
 
-    <!-- Footer institucional (unificado) -->
     <footer class="footer">
         <div class="rainbow-dots">
             <span style="background:#D8303B;"></span>
@@ -422,7 +262,7 @@
         <p class="credito">© 2026 · Sol Isabella Volpe</p>
     </footer>
 
-    <!-- Modales y pantallas -->
+    <!-- Modales -->
     <div id="custom-confirm" class="fullscreen-overlay">
         <div class="modal-box">
             <h2 id="confirm-text">¿Confirmas tu estrella?</h2>
@@ -435,8 +275,8 @@
     </div>
 
     <div id="loading-screen" class="fullscreen-overlay">
-        <div style="font-size: 1.2rem; color: #ffb3c6; display: flex; flex-direction: column; align-items: center; gap: 20px;">
-            <div style="font-size: 3rem;">✨</div>
+        <div style="font-size:1rem; color:#ffb3c6; display:flex; flex-direction:column; align-items:center; gap:16px;">
+            <div style="font-size:2.5rem;">✨</div>
             <span>Conectando con las estrellas...</span>
         </div>
     </div>
@@ -448,24 +288,69 @@
     <div id="success-screen" class="fullscreen-overlay">
         <div class="mensaje-titulo">🌟 Estrella enviada</div>
         <div class="mensaje-sub">Gracias, mi hermana!</div>
-        <button class="btn-magico" style="max-width: 250px;" onclick="location.reload()">Volver a inicio</button>
+        <button class="btn-magico" style="max-width:250px;" onclick="location.reload()">Volver a inicio</button>
     </div>
 
     <div id="error-screen" class="fullscreen-overlay">
         <div class="mensaje-titulo">¡Lo sentimos!</div>
         <div class="mensaje-sub" id="error-motivo">No pudimos procesar tu voto.</div>
         <div class="mensaje-chico">Si crees que se trata de un error, comunicate con alguna de las oficiales.</div>
-        <button class="btn-magico btn-cancelar" style="max-width: 250px;" onclick="location.reload()">Volver</button>
+        <button class="btn-magico btn-cancelar" style="max-width:250px;" onclick="location.reload()">Volver</button>
     </div>
 
     <script>
         // ---------- CONFIGURACIÓN ----------
-        const SCRIPT_URL = "https://script.google.com/macros/s/AKfycbzjw-lHc9tzPRdkstWOwp4TF_Pgthtg2GNRVIdwMk9Az6RXyGq1sXehAFU1MXmrxvnVuw/exec"; // Reemplazar con tu URL
+        const SCRIPT_URL = "https://script.google.com/macros/s/AKfycbzjw-lHc9tzPRdkstWOwp4TF_Pgthtg2GNRVIdwMk9Az6RXyGq1sXehAFU1MXmrxvnVuw/exec";
 
         let listaHermanasRaw = [];
         let usuarioActual = "";
         let passActual = "";
         let hermanaElegida = "";
+
+        // ---------- SESIÓN ÚNICA ----------
+        const storedUser = JSON.parse(localStorage.getItem('jeroUser'));
+        if (storedUser && storedUser.user) {
+            usuarioActual = storedUser.user;
+            document.getElementById('login-section').style.display = 'none';
+            cargarHermanasConUsuario();
+        } else {
+            window.onload = cargarHermanas;
+        }
+
+        // ---------- CARGAR HERMANAS CON USUARIO ----------
+        async function cargarHermanasConUsuario() {
+            try {
+                const resp = await fetch(SCRIPT_URL + "?t=" + new Date().getTime());
+                listaHermanasRaw = await resp.json();
+
+                if (listaHermanasRaw.length === 0) {
+                    mostrarError("No hay hermanas registradas para votar.");
+                    return;
+                }
+
+                const yo = listaHermanasRaw.find(h => h.user === usuarioActual);
+                if (!yo) {
+                    mostrarError("No estás en la lista de votación.");
+                    return;
+                }
+
+                if (yo.habilitada !== "SI") {
+                    mostrarError("No estás habilitada para votar esta semana.");
+                    return;
+                }
+
+                if (yo.yaVoto === "SI") {
+                    mostrarError("Ya has enviado tu estrella esta semana. ¡Vuelve el próximo sábado!");
+                    return;
+                }
+
+                document.getElementById('vote-section').style.display = 'flex';
+                renderBubbles();
+            } catch (e) {
+                document.getElementById('login-error-msg').innerText = "Error al cargar la lista. Recarga la página.";
+                document.getElementById('login-error-msg').style.display = 'block';
+            }
+        }
 
         // ---------- CARGAR HERMANAS ----------
         async function cargarHermanas() {
@@ -533,11 +418,9 @@
             const div = document.getElementById('vote-section');
             div.innerHTML = "";
 
-            // Mezclar aleatoriamente
             const mezcladas = [...listaHermanasRaw].sort(() => Math.random() - 0.5);
 
             mezcladas.forEach(h => {
-                // Omitir a la propia usuaria
                 if (h.user === usuarioActual) return;
 
                 const bubble = document.createElement('div');
@@ -584,7 +467,6 @@
                 const res = await response.json();
                 document.getElementById('loading-screen').style.display = 'none';
 
-                // Si el status NO contiene "Error", asumimos éxito
                 if (!res.status.includes("Error")) {
                     iniciarAnimacion();
                 } else {
@@ -600,16 +482,12 @@
         function iniciarAnimacion() {
             const animScreen = document.getElementById('star-anim-screen');
             const star = document.getElementById('the-star');
-            
-            // Ocultar elementos de fondo
+
             document.querySelector('.container').style.display = 'none';
-            
-            // Mostrar pantalla de animación
+
             animScreen.style.display = 'flex';
-            
-            // Reiniciar la animación (quitar y volver a agregar la clase)
+
             star.classList.remove('animar-estrella');
-            // Forzar reflow para reiniciar la animación
             void star.offsetWidth;
             star.classList.add('animar-estrella');
 
@@ -626,19 +504,6 @@
             document.getElementById('error-motivo').innerText = motivo;
             document.getElementById('error-screen').style.display = 'flex';
         }
-
-        // ---------- INICIO ----------
-        window.onload = cargarHermanas;
-        const storedUser = JSON.parse(localStorage.getItem('jeroUser'));
-if (storedUser && storedUser.user) {
-    // Saltar login y usar este usuario
-    usuarioActual = storedUser.user;
-    document.getElementById('login-section').style.display = 'none';
-    document.getElementById('vote-section').style.display = 'flex';
-    renderBubbles();
-} else {
-    // Mostrar login normal
-}
     </script>
 </body>
 </html>
