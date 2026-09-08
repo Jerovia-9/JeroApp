@@ -8,6 +8,7 @@
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;1,400&family=Montserrat:wght@300;400;500;600;700&display=swap" rel="stylesheet" />
+  
   <style>
     /* ---------- Reset y base ---------- */
     * {
@@ -15,6 +16,20 @@
       padding: 0;
       box-sizing: border-box;
     }
+    // Mostrar usuario logueado desde sesión única (si existe)
+const storedUser = JSON.parse(localStorage.getItem('jeroUser'));
+if (storedUser && storedUser.user) {
+    // Puedes agregar un pequeño mensaje o badge en la página
+    console.log('👤 Usuario logueado:', storedUser.nombre);
+    // Opcional: agregar un elemento en el header para mostrar el nombre
+    const header = document.querySelector('.header');
+    if (header) {
+        const userLabel = document.createElement('p');
+        userLabel.style.cssText = 'font-size:0.8rem; color:#d63384; font-weight:500; margin-top:0.2rem;';
+        userLabel.textContent = '👋 ' + storedUser.nombre;
+        header.appendChild(userLabel);
+    }
+}
     body {
       font-family: 'Montserrat', sans-serif;
       background: linear-gradient(145deg, #fdf6f9 0%, #fff0f5 100%);
@@ -998,25 +1013,7 @@
       document.getElementById('rulesList').innerHTML = htmlContent;
       document.getElementById('rulesModal').classList.remove('hidden');
     }
-// ---------- SESIÓN ÚNICA ----------
-const storedUser = JSON.parse(localStorage.getItem('jeroUser'));
-if (storedUser && storedUser.user) {
-    // Saltar login overlay y usar este usuario
-    // Para JeroStore: oculta el auth overlay y asigna el usuario
-    document.getElementById('authOverlay').style.display = 'none';
-    user = {
-        nombre: storedUser.nombre,
-        alias: storedUser.user,
-        jeroCoins: 0 // se actualizará al cargar datos
-    };
-    isGuest = false;
-    document.getElementById('labelName').innerText = storedUser.nombre;
-    document.getElementById('jeroBadge').style.display = 'block';
-    // Cargar datos y renderizar sin login
-    init(); // pero modificamos init para que no pida login
-} else {
-    // Mostrar login normal
-}
+
     // ---------- INICIAR ----------
   </script>
 </body>
