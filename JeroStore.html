@@ -1,0 +1,1265 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>JeroStore · Asamblea Jerovia N°9</title>
+  <!-- Google Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;1,400&family=Montserrat:wght@300;400;500;600;700&display=swap" rel="stylesheet" />
+  <style>
+    /* ---------- Reset y base ---------- */
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+    body {
+      font-family: 'Montserrat', sans-serif;
+      background: linear-gradient(145deg, #fdf6f9 0%, #fff0f5 100%);
+      min-height: 100vh;
+      color: #2d2d2d;
+      padding: 0;
+      padding-bottom: 100px;
+    }
+
+    /* ---------- Arcoíris animado ---------- */
+    .rainbow-bar {
+      width: 100%;
+      height: 6px;
+      background: linear-gradient(90deg,
+          #D8303B, #F58634, #FFE61C, #00A859, #00AFEF, #0065A0, #727CB6);
+      background-size: 300% 100%;
+      animation: arcoirisMove 6s ease-in-out infinite alternate;
+      box-shadow: 0 4px 20px rgba(216, 48, 59, 0.2);
+    }
+    @keyframes arcoirisMove {
+      0% { background-position: 0% 50%; }
+      100% { background-position: 100% 50%; }
+    }
+
+    /* ---------- Contenedor principal ---------- */
+    .container {
+      max-width: 1100px;
+      margin: 0 auto;
+      padding: 1.5rem 1.5rem 1rem;
+      background: rgba(255, 255, 255, 0.75);
+      backdrop-filter: blur(10px);
+      -webkit-backdrop-filter: blur(10px);
+      border-radius: 0 0 40px 40px;
+      box-shadow: 0 30px 60px -20px rgba(214, 51, 132, 0.25),
+                  0 10px 30px -10px rgba(0,0,0,0.05);
+      border: 1px solid rgba(255, 255, 255, 0.5);
+      margin-top: 0;
+    }
+
+    /* ---------- Encabezado (header) ---------- */
+    header {
+      background: transparent;
+      padding: 1rem 0 0.5rem;
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+    }
+    .header-top {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      width: 100%;
+    }
+    h1 {
+      font-family: 'Playfair Display', serif;
+      font-weight: 700;
+      font-size: 2rem;
+      color: #1a1a1a;
+      margin: 0;
+    }
+    h1 span {
+      background: linear-gradient(135deg, #d63384, #b82a6e);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+    }
+    .btn-help {
+      background: none;
+      border: 2px solid #f0dce4;
+      border-radius: 50%;
+      width: 36px;
+      height: 36px;
+      font-size: 1rem;
+      color: #d63384;
+      cursor: pointer;
+      transition: all 0.2s;
+      font-weight: 700;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+    .btn-help:hover {
+      background: #d63384;
+      color: white;
+      border-color: #d63384;
+    }
+
+    .user-status {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      width: 100%;
+      font-weight: 500;
+      font-size: 0.9rem;
+      color: #5a4a52;
+    }
+    .user-name {
+      font-weight: 600;
+      color: #2d2d2d;
+    }
+    .jero-badge {
+      background: #fff9e6;
+      color: #d4af37;
+      padding: 4px 14px;
+      border-radius: 30px;
+      border: 1px solid #f3e5ab;
+      font-weight: 700;
+      font-size: 0.8rem;
+      display: none;
+    }
+
+    /* ---------- Muro ---------- */
+    .muro-container {
+      background: white;
+      border-radius: 20px;
+      padding: 1rem 1.2rem;
+      margin: 1rem 0;
+      border: 1px solid #f0dce4;
+      box-shadow: 0 4px 15px rgba(0,0,0,0.02);
+    }
+    .muro-container h3 {
+      font-size: 0.9rem;
+      font-weight: 600;
+      color: #d63384;
+      margin: 0 0 8px 0;
+      display: flex;
+      align-items: center;
+      gap: 6px;
+    }
+    .muro-list {
+      list-style: none;
+      padding: 0;
+      margin: 0;
+      font-size: 0.8rem;
+      color: #5a4a52;
+      max-height: 150px;
+      overflow-y: auto;
+    }
+    .muro-list li {
+      padding: 6px 0;
+      border-bottom: 1px solid #f5f0f2;
+      line-height: 1.4;
+    }
+    .store-closed-msg {
+      text-align: center;
+      color: #d63384;
+      font-weight: 600;
+      padding: 12px;
+      background: #fce4ec;
+      border-radius: 16px;
+      margin: 1rem 0;
+      display: none;
+    }
+
+    /* ---------- Auth overlay ---------- */
+    .auth-overlay {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: rgba(255, 255, 255, 0.92);
+      backdrop-filter: blur(8px);
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      z-index: 200;
+    }
+    .auth-card {
+      background: white;
+      padding: 2.5rem 2rem;
+      border-radius: 30px;
+      box-shadow: 0 20px 60px rgba(0,0,0,0.08);
+      width: 90%;
+      max-width: 340px;
+      text-align: center;
+      border: 1px solid #f0dce4;
+    }
+    .auth-card h2 {
+      font-family: 'Playfair Display', serif;
+      color: #d63384;
+      margin-bottom: 0.5rem;
+    }
+    .auth-card p {
+      color: #7a6a72;
+      font-size: 0.9rem;
+      margin-bottom: 1.2rem;
+    }
+    .auth-card input {
+      width: 100%;
+      padding: 12px 16px;
+      margin: 6px 0;
+      border: 2px solid #f0dce4;
+      border-radius: 60px;
+      font-family: 'Montserrat', sans-serif;
+      font-size: 0.9rem;
+      outline: none;
+      transition: 0.2s;
+    }
+    .auth-card input:focus {
+      border-color: #d63384;
+      box-shadow: 0 0 0 4px rgba(214,51,132,0.08);
+    }
+    .btn-main {
+      background: linear-gradient(135deg, #d63384, #b82a6e);
+      color: white;
+      border: none;
+      padding: 12px;
+      border-radius: 60px;
+      font-weight: 600;
+      cursor: pointer;
+      width: 100%;
+      margin-top: 10px;
+      transition: 0.2s;
+    }
+    .btn-main:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 8px 20px rgba(214,51,132,0.3);
+    }
+    .btn-guest {
+      background: none;
+      border: none;
+      color: #b8a4ae;
+      font-size: 0.8rem;
+      text-decoration: underline;
+      margin-top: 15px;
+      cursor: pointer;
+    }
+
+    /* ---------- Admin bar ---------- */
+    .admin-bar {
+      background: white;
+      border-radius: 20px;
+      padding: 1.2rem 1.5rem;
+      margin: 1rem 0;
+      border: 2px solid #f8bbd0;
+      display: none;
+    }
+    .admin-bar h3 {
+      font-family: 'Playfair Display', serif;
+      color: #d63384;
+      margin: 0 0 12px 0;
+    }
+    .controls {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px;
+      margin-bottom: 12px;
+    }
+    .toggle {
+      padding: 8px 16px;
+      border-radius: 30px;
+      border: 1px solid #e0d6da;
+      background: white;
+      font-size: 0.75rem;
+      font-weight: 600;
+      cursor: pointer;
+      color: #5a4a52;
+      transition: 0.2s;
+    }
+    .toggle.active {
+      background: #f8bbd0;
+      border-color: #d63384;
+      color: #2d2d2d;
+    }
+    .toggle-master {
+      background: #00A859;
+      color: white;
+      border: none;
+    }
+    .toggle-master.off {
+      background: #D8303B;
+    }
+    .admin-table-container {
+      max-height: 200px;
+      overflow-y: auto;
+      border: 1px solid #f0dce4;
+      border-radius: 12px;
+    }
+    .admin-table {
+      width: 100%;
+      border-collapse: collapse;
+      font-size: 0.75rem;
+    }
+    .admin-table th {
+      background: #fce4ec;
+      padding: 8px 12px;
+      text-align: left;
+      position: sticky;
+      top: 0;
+    }
+    .admin-table td {
+      padding: 8px 12px;
+      border-bottom: 1px solid #f5f0f2;
+    }
+
+    /* ---------- Grid de tienda ---------- */
+    .store-grid {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 16px;
+      justify-content: flex-start;
+      margin: 1.5rem 0;
+    }
+    .card {
+      background: white;
+      border-radius: 20px;
+      border: 1px solid #f0dce4;
+      display: flex;
+      flex-direction: column;
+      box-shadow: 0 4px 15px rgba(0,0,0,0.02);
+      width: calc(33.333% - 11px);
+      flex-shrink: 0;
+      transition: transform 0.2s;
+    }
+    .card:hover {
+      transform: translateY(-3px);
+    }
+    @media (max-width: 700px) {
+      .card { width: calc(50% - 8px); }
+    }
+    @media (max-width: 450px) {
+      .card { width: 100%; }
+    }
+    .card-body {
+      padding: 1.2rem 1rem;
+      text-align: center;
+      cursor: pointer;
+      flex-grow: 1;
+    }
+    .card-title {
+      font-family: 'Playfair Display', serif;
+      font-weight: 700;
+      font-size: 1.1rem;
+      color: #1a1a1a;
+    }
+    .card-info {
+      font-size: 0.8rem;
+      color: #5a4a52;
+      background: #faf5f8;
+      max-height: 0;
+      overflow: hidden;
+      transition: max-height 0.3s ease, padding 0.3s ease;
+      text-align: center;
+      padding: 0 1rem;
+      border-top: 1px solid transparent;
+    }
+    .card-info.show {
+      max-height: 200px;
+      padding: 1rem;
+      border-top: 1px solid #f0dce4;
+    }
+    .card-footer {
+      padding: 0.8rem 1rem;
+      background: #faf5f8;
+      border-top: 1px solid #f0dce4;
+      border-radius: 0 0 20px 20px;
+    }
+    .btn-price {
+      width: 100%;
+      background: white;
+      border: 2px solid #f8bbd0;
+      padding: 10px;
+      border-radius: 60px;
+      font-weight: 700;
+      color: #d63384;
+      cursor: pointer;
+      transition: 0.2s;
+      font-size: 0.85rem;
+    }
+    .btn-price:hover:not(:disabled) {
+      background: #d63384;
+      color: white;
+      border-color: #d63384;
+    }
+    .btn-price:disabled {
+      background: #f5f0f2;
+      color: #b8a4ae;
+      border-color: #e0d6da;
+      cursor: not-allowed;
+    }
+
+    /* ---------- Modales ---------- */
+    .modal {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: rgba(0, 0, 0, 0.3);
+      backdrop-filter: blur(4px);
+      display: none;
+      justify-content: center;
+      align-items: center;
+      z-index: 300;
+      padding: 20px;
+    }
+    .modal-content {
+      background: white;
+      padding: 2rem 1.8rem;
+      border-radius: 30px;
+      width: 100%;
+      max-width: 400px;
+      max-height: 90vh;
+      overflow-y: auto;
+      box-shadow: 0 30px 60px rgba(0,0,0,0.15);
+      border-top: 6px solid #d63384;
+    }
+    .modal-content h2 {
+      font-family: 'Playfair Display', serif;
+      font-size: 1.4rem;
+      color: #d63384;
+      text-align: center;
+      margin-bottom: 0.5rem;
+    }
+    .field-label {
+      display: block;
+      font-size: 0.7rem;
+      font-weight: 600;
+      color: #a08a94;
+      margin: 12px 0 4px 4px;
+      text-transform: uppercase;
+    }
+    .modal-content input {
+      width: 100%;
+      padding: 10px 14px;
+      border: 2px solid #f0dce4;
+      border-radius: 60px;
+      font-family: 'Montserrat', sans-serif;
+      font-size: 0.9rem;
+      outline: none;
+      transition: 0.2s;
+    }
+    .modal-content input:focus {
+      border-color: #d63384;
+      box-shadow: 0 0 0 4px rgba(214,51,132,0.08);
+    }
+    .descripcion-modal {
+      background: #fce4ec;
+      padding: 12px 16px;
+      border-radius: 16px;
+      font-size: 0.85rem;
+      color: #5a4a52;
+      margin: 10px 0;
+      text-align: center;
+    }
+    .price-display {
+      font-weight: 700;
+      text-align: center;
+      font-size: 1.2rem;
+      color: #d63384;
+      margin: 12px 0;
+    }
+    .price-display small {
+      font-size: 0.7rem;
+      font-weight: 400;
+      color: #a08a94;
+    }
+    .upsell-section {
+      margin-top: 15px;
+      padding: 12px;
+      background: #fff9fb;
+      border: 1px solid #f8bbd0;
+      border-radius: 16px;
+      display: none;
+    }
+    .upsell-section.show {
+      display: block;
+    }
+    .upsell-section label {
+      font-size: 0.8rem;
+      font-weight: 600;
+      color: #d63384;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+    .upsell-section input[type="text"] {
+      margin-top: 8px;
+    }
+
+    /* ---------- Footer institucional ---------- */
+    .footer {
+      max-width: 1100px;
+      margin: 2rem auto 0;
+      padding: 1.2rem 1.5rem 0.5rem;
+      text-align: center;
+      font-size: 0.8rem;
+      font-weight: 400;
+      letter-spacing: 0.5px;
+      border-top: 1px solid rgba(214, 51, 132, 0.08);
+      line-height: 1.8;
+      color: #b8a4ae;
+    }
+    .footer .rainbow-dots {
+      display: inline-flex;
+      gap: 6px;
+      margin-bottom: 0.5rem;
+    }
+    .footer .rainbow-dots span {
+      width: 8px;
+      height: 8px;
+      border-radius: 50%;
+      display: inline-block;
+    }
+    .footer .linea-orden {
+      color: #7a6a72;
+      font-weight: 400;
+    }
+    .footer .linea-asamblea {
+      color: #d63384;
+      font-weight: 600;
+    }
+    .footer .linea-jurisdiccion {
+      color: #1a5276;
+      font-weight: 500;
+    }
+    .footer .credito {
+      margin-top: 0.3rem;
+      opacity: 0.6;
+      font-size: 0.7rem;
+      color: #b8a4ae;
+    }
+
+    /* ---------- Toast y confeti ---------- */
+    .toast {
+      visibility: hidden;
+      min-width: 250px;
+      background: #d63384;
+      color: white;
+      text-align: center;
+      border-radius: 60px;
+      padding: 14px 24px;
+      position: fixed;
+      z-index: 9999;
+      left: 50%;
+      transform: translateX(-50%);
+      bottom: 30px;
+      opacity: 0;
+      transition: 0.3s;
+      font-weight: 600;
+      font-size: 0.9rem;
+      box-shadow: 0 8px 30px rgba(214,51,132,0.3);
+    }
+    .toast.show {
+      visibility: visible;
+      opacity: 1;
+      bottom: 40px;
+    }
+    .confetti {
+      position: fixed;
+      width: 10px;
+      height: 10px;
+      z-index: 9998;
+      animation: fall linear forwards;
+      border-radius: 2px;
+    }
+    @keyframes fall {
+      to { transform: translateY(100vh) rotate(720deg); opacity: 0; }
+    }
+
+    /* ---------- Responsive ---------- */
+    @media (max-width: 640px) {
+      .container { padding: 1rem 0.8rem; }
+      h1 { font-size: 1.6rem; }
+      .card { width: 100%; }
+    }
+    /* ---------- FIX PARA MÓVILES ---------- */
+    @media (max-width: 640px) {
+      .store-grid {
+        display: block !important;
+        max-height: none !important;
+        overflow: visible !important;
+        height: auto !important;
+      }
+      .card {
+        display: block !important;
+        width: 100% !important;
+        max-width: 100% !important;
+        margin-bottom: 16px !important;
+        flex: none !important;
+        flex-shrink: 0 !important;
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- Arcoíris superior -->
+  <div class="rainbow-bar"></div>
+
+  <!-- Contenedor principal -->
+  <div class="container">
+
+    <!-- Header -->
+    <header>
+      <div class="header-top">
+        <h1><span>JeroStore</span></h1>
+        <button class="btn-help" onclick="openHelp()">❓</button>
+      </div>
+      <div class="user-status">
+        <span id="labelName" class="user-name">Invitada</span>
+        <div class="jero-badge" id="jeroBadge"><span id="valCoins">0</span> ✦ JeroCoins</div>
+      </div>
+    </header>
+
+    <!-- Muro -->
+    <div class="muro-container" id="muroSection">
+      <h3>✨ Novedades de la Asamblea</h3>
+      <ul class="muro-list" id="muroList"><li id="emptyMuro">Cargando chismes y canjes...</li></ul>
+    </div>
+
+    <!-- Mensaje tienda cerrada -->
+    <div class="store-closed-msg" id="storeClosedMsg">🛑 La tienda está en pausa. ¡Nos vemos en la próxima reunión!</div>
+
+    <!-- Grid de productos -->
+    <div class="store-grid" id="grid"></div>
+
+  </div>
+
+  <!-- Footer institucional -->
+  <footer class="footer">
+    <div class="rainbow-dots">
+      <span style="background:#D8303B;"></span>
+      <span style="background:#F58634;"></span>
+      <span style="background:#FFE61C;"></span>
+      <span style="background:#00A859;"></span>
+      <span style="background:#00AFEF;"></span>
+      <span style="background:#0065A0;"></span>
+      <span style="background:#727CB6;"></span>
+    </div>
+    <p>
+      <span class="linea-orden">Orden Internacional del Arcoíris para Niñas</span> · 
+      <span class="linea-asamblea">Asamblea Jerovia N°9</span> · 
+      <span class="linea-jurisdiccion">Gran Jurisdicción de Paraguay</span>
+    </p>
+    <p class="credito">© 2026 · Sol Isabella Volpe</p>
+  </footer>
+
+  <!-- Auth overlay -->
+  <div class="auth-overlay" id="authOverlay">
+    <div class="auth-card">
+      <h2>Bienvenida</h2>
+      <p>Inicia sesión con tus datos de la Asamblea</p>
+      <input type="text" id="userInput" placeholder="Tu nombre o alias">
+      <input type="password" id="passInput" placeholder="Contraseña">
+      <button class="btn-main" onclick="attemptLogin()">Entrar</button>
+      <button class="btn-guest" onclick="enterAsGuest()">Continuar como invitada</button>
+    </div>
+  </div>
+
+  <!-- Admin bar -->
+  <div class="admin-bar" id="adminBar">
+    <h3>Panel de Jeroviana 👑</h3>
+    <div class="controls">
+      <button class="toggle toggle-master" id="btnMasterToggle" onclick="toggleMasterSwitch()">Tienda: ON</button>
+      <button class="toggle" id="btn_normal" onclick="toggleMode('normal', 'btn_normal')">Reunión Regular</button>
+      <button class="toggle" id="btn_publica" onclick="toggleMode('publica', 'btn_publica')">Ceremonia Pública</button>
+      <button class="toggle" id="btn_dinamica" onclick="toggleMode('dinamica', 'btn_dinamica')">Dinámica</button>
+      <button class="toggle" id="btn_panchos" onclick="toggleMode('panchos', 'btn_panchos')">Panchos</button>
+      <button class="toggle" style="background: #d4af37; color: white; border:none; width: 100%; margin-top:5px;" onclick="closeMonth()">Cerrar Mes ✨</button>
+      <button class="toggle" style="background: #D8303B; color: white; border:none; width: 100%; margin-top:5px;" onclick="closePeriod()">Cerrar Periodo 📅</button>
+    </div>
+    <div class="admin-table-container">
+      <table class="admin-table">
+        <thead><tr><th>Hermanita</th><th>Canje</th><th>Detalles Específicos</th></tr></thead>
+        <tbody id="adminLogsBody"></tbody>
+      </table>
+    </div>
+  </div>
+
+  <!-- Modales -->
+  <div class="modal" id="modalBuy">
+    <div class="modal-content">
+      <h2 id="buyTitle"></h2>
+      <div class="descripcion-modal" id="buyDesc"></div>
+      <div id="dynamicFields"></div>
+      <div class="price-display" id="priceDisplay"></div>
+      <div class="upsell-section" id="upsellSection">
+        <label>
+          <input type="checkbox" id="upsellCheck" onchange="updateUpsellUI()"> Especificar mensaje (+<span id="upsellPercent">25</span>%)
+        </label>
+        <input type="text" id="upsellMsg" placeholder="¿Qué debe decir exactamente?" style="display:none;">
+      </div>
+      <button class="btn-main" style="margin-top:20px;" onclick="executePurchase()">Confirmar Canje</button>
+      <button class="btn-guest" style="width:100%; margin-top:10px;" onclick="closeM('modalBuy')">Cancelar</button>
+    </div>
+  </div>
+
+  <div class="modal" id="modalHelp">
+    <div class="modal-content">
+      <h2>Reglas JeroStore</h2>
+      <p style="font-size: 0.9rem; color: #5a4a52; line-height: 1.6;">
+        <b>¿Cómo funciona?</b><br>Toca cualquier tarjeta para leer la descripción del privilegio.<br><br>
+        <b>Canjes:</b><br>Al tocar el botón del precio, completas tus detalles. El pago se descuenta automáticamente sin salir de la página.<br><br>
+        <b>Muro:</b> ¡Todo lo que canjees aparecerá en las novedades para que todas lo vean!
+      </p>
+      <button class="btn-main" onclick="closeM('modalHelp')">Entendido</button>
+    </div>
+  </div>
+
+  <!-- Toast -->
+  <div id="toastMsg" class="toast"></div>
+
+  <script>
+    // ---------- CONFIGURACIÓN ----------
+    const SCRIPT_URL = "https://script.google.com/macros/s/AKfycbzMI0KX6hJnyxMAWU2v-S72UebJ4QK_PI7_lxGaimYozyDKxzV5nEDOcnb5mcRyhjRm/exec";
+
+    let user = null;
+    let isGuest = true;
+    let isStoreOpen = true;
+    // Estado inicial: para invitados, todos los modos activos para que vean todo
+    let activeModes = { normal: true, publica: true, dinamica: true, panchos: true, always: true };
+    let activeItem = null;
+    let globalLogs = [];
+    let catalogItems = [];
+
+    // ---------- FUNCIONES DE ADMIN ----------
+    function cargarFiltrosGuardados() {
+      if (isGuest) return;
+      const guardados = localStorage.getItem('jeroStore_filtros');
+      if (guardados) {
+        try {
+          const filtros = JSON.parse(guardados);
+          // Solo cargar los filtros que existan en activeModes
+          Object.keys(activeModes).forEach(key => {
+            if (key !== 'always' && filtros[key] !== undefined) {
+              activeModes[key] = filtros[key];
+            }
+          });
+        } catch(e) {}
+      }
+      actualizarBotonesModo();
+    }
+
+    function actualizarBotonesModo() {
+      const btnNormal = document.getElementById('btn_normal');
+      const btnPublica = document.getElementById('btn_publica');
+      const btnDinamica = document.getElementById('btn_dinamica');
+      const btnPanchos = document.getElementById('btn_panchos');
+      if (btnNormal) btnNormal.classList.toggle('active', activeModes.normal);
+      if (btnPublica) btnPublica.classList.toggle('active', activeModes.publica);
+      if (btnDinamica) btnDinamica.classList.toggle('active', activeModes.dinamica);
+      if (btnPanchos) btnPanchos.classList.toggle('active', activeModes.panchos);
+    }
+
+    function guardarFiltros() {
+      if (isGuest) return;
+      localStorage.setItem('jeroStore_filtros', JSON.stringify({
+        normal: activeModes.normal,
+        publica: activeModes.publica,
+        dinamica: activeModes.dinamica,
+        panchos: activeModes.panchos,
+        always: activeModes.always
+      }));
+    }
+
+    // ---------- CONSTRUIR CATÁLOGO DESDE ADMIN ----------
+    function construirCatalogo(adminData) {
+      if (!adminData || !adminData.privilegios || adminData.privilegios.length === 0) {
+        console.warn('No se encontraron privilegios en Admin, usando catálogo por defecto.');
+        return getCatalogoDefecto();
+      }
+
+      // Mapeo exacto de categorías (coincide con los nombres en la hoja Admin)
+      const categoriaMap = {
+        "Reunion Regular": "normal",
+        "Dinamica": "dinamica",
+        "Ceremonia Abierta": "publica",
+        "JeroPancho": "panchos",
+        "Siempre": "always"
+      };
+
+      const items = adminData.privilegios.map(p => {
+        const cat = categoriaMap[p.categoria] || "normal";
+        const campos = p.campos || [];
+        const campoExtra = p.campoExtra || '';
+        const cobroExtra = p.cobroExtra || 'NO';
+        const upsellPercent = (cobroExtra !== 'NO' && !isNaN(parseFloat(cobroExtra))) ? parseFloat(cobroExtra) : 0;
+
+        return {
+          id: Math.random().toString(36).substr(2, 6),
+          name: p.nombre || 'Sin nombre',
+          price: parseFloat(p.costo) || 0,
+          cat: cat,
+          desc: p.descripcion || '',
+          campos: campos,
+          campoExtra: campoExtra,
+          upsellPercent: upsellPercent
+        };
+      });
+
+      const validItems = items.filter(i => i.name && i.price > 0);
+      return validItems;
+    }
+
+    // Catálogo por defecto (fallback)
+    function getCatalogoDefecto() {
+      return [
+        { id: 1, name: "Mi tema", price: 5, cat: 'normal', desc: "Elegí una música que sonará durante la reunión del sábado.", campos: ['Canción'], campoExtra: '', upsellPercent: 0 },
+        { id: 2, name: "Yo organizo", price: 8, cat: 'dinamica', desc: "Elegís el orden de participación en la dinámica.", campos: [], campoExtra: '', upsellPercent: 0 },
+        { id: 3, name: "Momento épico", price: 12, cat: 'normal', desc: "Podes elegir una música en esta reunion... Para que suene cuando quieras!!", campos: ['Canción', 'Momento'], campoExtra: '', upsellPercent: 0 },
+        { id: 4, name: "Entrada triunfal", price: 15, cat: 'normal', desc: "Música para la entrada ritualística.", campos: ['Canción'], campoExtra: '', upsellPercent: 0 },
+        { id: 5, name: "Salida triunfal", price: 15, cat: 'normal', desc: "Música para la salida ritualística.", campos: ['Canción'], campoExtra: '', upsellPercent: 0 },
+        { id: 6, name: "Este tema NO", price: 20, cat: 'always', desc: "Decidí qué música NO va a sonar.", campos: ['Canción prohibida'], campoExtra: '', upsellPercent: 0 },
+        { id: 7, name: "Mi tema", price: 22, cat: 'publica', desc: "Elegí una música para que suene en la pública (cuando Armonía decida).", campos: ['Canción'], campoExtra: '', upsellPercent: 0 },
+        { id: 8, name: "Momento épico", price: 25, cat: 'publica', desc: "Música para la ceremonia pública en el momento que VOS elijas.", campos: ['Canción', 'Momento'], campoExtra: '', upsellPercent: 0 },
+        { id: 9, name: "Entrada triunfal", price: 30, cat: 'publica', desc: "Música para la entrada de la ceremonia pública.", campos: ['Canción'], campoExtra: '', upsellPercent: 0 },
+        { id: 10, name: "Salida épica", price: 30, cat: 'publica', desc: "Música para la salida de la ceremonia pública.", campos: ['Canción'], campoExtra: '', upsellPercent: 0 },
+        { id: 11, name: "Gordichan", price: 40, cat: 'publica', desc: "Elegí los bocaditos y hacé las especificaciones que quieras.", campos: ['Lugar', 'Especificaciones'], campoExtra: '', upsellPercent: 0 },
+        { id: 12, name: "Insta baddie", price: 45, cat: 'always', desc: "La asamblea va a subir una historia a instagram con una descripción que vos elijas y diciendo como te destacas en nuestra asamblea", campos: ['Mensaje'], campoExtra: '', upsellPercent: 0 },
+        { id: 13, name: "De chill", price: 50, cat: 'normal', desc: "No vas a tener que limpiar, ordenar ni ayudar en nada en la reunión", campos: [], campoExtra: '', upsellPercent: 0 },
+        { id: 14, name: "Freaky Friday", price: 55, cat: 'normal', desc: "Cambiá de cargo con la hermana que elijas.", campos: ['Con quién querés cambiar'], campoExtra: '', upsellPercent: 0 },
+        { id: 15, name: "Baby no", price: 55, cat: 'normal', desc: "Negate al cambio de cargos que otra hermana pagó!!", campos: ['Canción que NO querés que suene'], campoExtra: '', upsellPercent: 0 },
+        { id: 16, name: "Don't be shy", price: 65, cat: 'publica', desc: "Obligá a hablar a una hermana en el momento de la palabra.", campos: ['Nombre de la víctima'], campoExtra: 'Que querés que diga?', upsellPercent: 25 },
+        { id: 17, name: "Me da wewencha", price: 65, cat: 'publica', desc: "Negate a tu obligación de hablar.", campos: [], campoExtra: '', upsellPercent: 0 },
+        { id: 18, name: "RE de chill", price: 70, cat: 'publica', desc: "No vas a tener que limpiar, ordenar ni ayudar a armar la pública", campos: [], campoExtra: '', upsellPercent: 0 },
+        { id: 19, name: "JeroPanChill", price: 75, cat: 'panchos', desc: "En la JeroPancheada, no ayudes!! Relajate y mira como tus hermanas trabajas sin perder JeroPoints", campos: [], campoExtra: '', upsellPercent: 0 },
+        { id: 20, name: "I <3 JeroPanchos", price: 30, cat: 'panchos', desc: "Usa tus JeroCoins para comprar un delicioso JeroPancho", campos: [], campoExtra: '', upsellPercent: 0 },
+        { id: 21, name: "Mención Presidencial", price: 80, cat: 'publica', desc: "En el momento de la palabra de la Ilustre, al final de la ceremonia, va a digirte unas palabras de reconocimiento", campos: [], campoExtra: 'Que querés que diga?', upsellPercent: 25 }
+      ];
+    }
+
+    // ---------- INICIO ----------
+    async function init() {
+      try {
+        const resp = await fetch(SCRIPT_URL + "?source=store");
+        const data = await resp.json();
+
+        const adminData = data.admin || null;
+        if (adminData) {
+          catalogItems = construirCatalogo(adminData);
+          console.log('✅ Catálogo cargado desde Admin:', catalogItems.length, 'items');
+        } else {
+          console.warn('⚠️ No se encontró Admin, usando catálogo por defecto.');
+          catalogItems = getCatalogoDefecto();
+        }
+
+        isStoreOpen = (data.storeState !== "CLOSED");
+        document.getElementById('storeClosedMsg').style.display = isStoreOpen ? 'none' : 'block';
+
+        globalLogs = data.logs || [];
+
+        // Si es invitada, todos los modos activos para que vea todo
+        if (isGuest) {
+          activeModes = { normal: true, publica: true, dinamica: true, panchos: true, always: true };
+          actualizarBotonesModo();
+          actualizarMuroYAdmin(globalLogs);
+          render();
+        } else {
+          cargarFiltrosGuardados();
+        }
+      } catch (e) {
+        console.error(e);
+        document.getElementById('muroList').innerHTML = '<li>Error al cargar datos. Recarga la página.</li>';
+      }
+    }
+
+    // ---------- LOGIN ----------
+    async function attemptLogin() {
+      const inputUser = document.getElementById('userInput').value.trim();
+      const inputPass = document.getElementById('passInput').value.trim();
+      if (!inputUser || !inputPass) return mostrarMensaje("Completá tus datos 🌸");
+
+      try {
+        const resp = await fetch(SCRIPT_URL + "?source=store");
+        const data = await resp.json();
+
+        isStoreOpen = (data.storeState !== "CLOSED");
+        document.getElementById('storeClosedMsg').style.display = isStoreOpen ? 'none' : 'block';
+
+        let found = null;
+        for (let u of data.usuarios) {
+          const aliasMatch = u.alias && u.alias.toLowerCase() === inputUser.toLowerCase();
+          const nameMatch = u.nombre.toLowerCase() === inputUser.toLowerCase();
+          if ((aliasMatch || nameMatch) && u.password === inputPass) {
+            found = u;
+            break;
+          }
+        }
+
+        if (inputUser === "Jeroviana" && inputPass === "9102021") {
+          user = { nombre: "Jeroviana", jeroCoins: 641922 };
+          isGuest = false;
+          document.getElementById('adminBar').style.display = 'block';
+          const btnT = document.getElementById('btnMasterToggle');
+          btnT.innerText = isStoreOpen ? "Tienda: ON" : "Tienda: OFF";
+          btnT.classList.toggle('off', !isStoreOpen);
+        } else if (found) {
+          user = found;
+          isGuest = false;
+        } else {
+          return mostrarMensaje("Datos incorrectos 🌸");
+        }
+
+        globalLogs = data.logs || [];
+        document.getElementById('authOverlay').style.display = 'none';
+        document.getElementById('labelName').innerText = user.nombre;
+        document.getElementById('valCoins').innerText = user.jeroCoins;
+        document.getElementById('jeroBadge').style.display = 'block';
+
+        cargarFiltrosGuardados();
+        actualizarMuroYAdmin(globalLogs);
+        render();
+      } catch (e) {
+        console.error(e);
+        mostrarMensaje("Error al conectar. Revisá tu conexión 🌸");
+      }
+    }
+
+    async function enterAsGuest() {
+      document.getElementById('authOverlay').style.display = 'none';
+      isGuest = true;
+      user = null;
+      // Para invitados, todos los modos activos
+      activeModes = { normal: true, publica: true, dinamica: true, panchos: true, always: true };
+      actualizarBotonesModo();
+      try {
+        const resp = await fetch(SCRIPT_URL + "?source=store");
+        const data = await resp.json();
+        isStoreOpen = (data.storeState !== "CLOSED");
+        document.getElementById('storeClosedMsg').style.display = isStoreOpen ? 'none' : 'block';
+        globalLogs = data.logs || [];
+        actualizarMuroYAdmin(globalLogs);
+        render();
+      } catch (e) {
+        console.error(e);
+        render();
+      }
+    }
+
+    // ---------- MURO Y ADMIN ----------
+    function armarFraseOrganica(usuario, beneficio, specs) {
+      if (!specs || specs.trim() === "") return `✨ ¡<b>${usuario}</b> aseguró su <b>${beneficio}</b>!`;
+      return `✨ ¡<b>${usuario}</b> acaba de canjear <b>${beneficio}</b>! <i>(Detalles: ${specs})</i>`;
+    }
+
+    function actualizarMuroYAdmin(logs) {
+      const list = document.getElementById('muroList');
+      const adminBody = document.getElementById('adminLogsBody');
+
+      if (logs.length > 0) {
+        list.innerHTML = logs.slice(0, 10).map(l => `<li>${armarFraseOrganica(l.usuario, l.beneficio, l.especificacion)}</li>`).join('');
+        if (user && user.nombre === "Jeroviana") {
+          adminBody.innerHTML = logs.map(l => `<tr><td><b>${l.usuario}</b></td><td>${l.beneficio}</td><td>${l.especificacion || "-"}</td></tr>`).join('');
+        }
+      } else {
+        list.innerHTML = '<li>✨ Aún no hay canjes recientes. ¡Sé la primera en canjear! ✨</li>';
+        if (user && user.nombre === "Jeroviana") {
+          adminBody.innerHTML = '<tr><td colspan="3">Sin canjes esta semana</td></tr>';
+        }
+      }
+    }
+
+    // ---------- RENDER ----------
+    function render() {
+      const g = document.getElementById('grid');
+      g.innerHTML = '';
+
+      if (!isStoreOpen) {
+        document.getElementById('storeClosedMsg').style.display = 'block';
+        return;
+      }
+      document.getElementById('storeClosedMsg').style.display = 'none';
+
+      // Para invitados: mostrar todos los items sin filtrar
+      let items;
+      if (isGuest) {
+        items = catalogItems;
+      } else {
+        // Para usuarios logueados: aplicar filtros según activeModes
+        items = catalogItems.filter(i => {
+          if (i.cat === 'always') return true;
+          return activeModes[i.cat] === true;
+        });
+      }
+
+      items.sort((a, b) => a.price - b.price);
+
+      if (items.length === 0) {
+        g.innerHTML = '<p style="width:100%; text-align:center; color:#b8a4ae; padding:2rem;">No hay privilegios disponibles para esta categoría.</p>';
+        return;
+      }
+
+      items.forEach(i => {
+        const disabled = (!isStoreOpen || isGuest) ? 'disabled' : '';
+        g.innerHTML += `
+          <div class="card">
+            <div class="card-body" onclick="toggleDesc('${i.id}')">
+              <div class="card-title">${i.name}</div>
+              <div style="font-size:0.6rem; color:#b8a4ae; margin-top:8px;">Toca para info 👇</div>
+            </div>
+            <div class="card-info" id="desc_${i.id}">${i.desc}</div>
+            <div class="card-footer">
+              <button class="btn-price" onclick="openBuy('${i.id}')" ${disabled}>${i.price} ✦</button>
+            </div>
+          </div>`;
+      });
+    }
+
+    function toggleDesc(id) {
+      const el = document.getElementById('desc_' + id);
+      const wasOpen = el.classList.contains('show');
+      document.querySelectorAll('.card-info').forEach(d => d.classList.remove('show'));
+      if (!wasOpen) el.classList.add('show');
+    }
+
+    // ---------- COMPRAR ----------
+    function openBuy(id) {
+      if (isGuest) {
+        mostrarMensaje("🌸 Para comprar un privilegio, inicia sesión con tu usuario y contraseña.");
+        return;
+      }
+      activeItem = catalogItems.find(i => i.id === id);
+      if (!activeItem) return;
+
+      document.getElementById('buyTitle').innerText = activeItem.name;
+      document.getElementById('buyDesc').innerText = activeItem.desc;
+
+      const fieldsContainer = document.getElementById('dynamicFields');
+      fieldsContainer.innerHTML = '';
+      if (activeItem.campos && activeItem.campos.length > 0) {
+        activeItem.campos.forEach(f => {
+          const label = document.createElement('label');
+          label.className = 'field-label';
+          label.textContent = f;
+          const input = document.createElement('input');
+          input.type = 'text';
+          input.id = `f_${f.replace(/\s/g, '')}`;
+          input.placeholder = 'Completar...';
+          fieldsContainer.appendChild(label);
+          fieldsContainer.appendChild(input);
+        });
+      }
+
+      const upSection = document.getElementById('upsellSection');
+      const upsellCheck = document.getElementById('upsellCheck');
+      const upsellMsg = document.getElementById('upsellMsg');
+      const upsellPercentSpan = document.getElementById('upsellPercent');
+
+      if (activeItem.upsellPercent > 0) {
+        upSection.classList.add('show');
+        upsellPercentSpan.textContent = activeItem.upsellPercent;
+        upsellCheck.checked = false;
+        upsellMsg.style.display = 'none';
+        upsellMsg.value = '';
+      } else {
+        upSection.classList.remove('show');
+        upsellCheck.checked = false;
+        upsellMsg.style.display = 'none';
+        upsellMsg.value = '';
+      }
+
+      actualizarPrecioModal();
+      document.getElementById('modalBuy').style.display = 'flex';
+    }
+
+    function actualizarPrecioModal() {
+      if (!activeItem) return;
+      let price = activeItem.price;
+      const isUp = activeItem.upsellPercent > 0 && document.getElementById('upsellCheck').checked;
+      if (isUp) {
+        price = Math.round(activeItem.price * (1 + activeItem.upsellPercent / 100));
+      }
+      const coinsMsg = user ? `Tus JeroCoins: ${user.jeroCoins}` : "Inicia sesión para canjear";
+      document.getElementById('priceDisplay').innerHTML = `Costo final: ${price} ✦<br><small style="font-size:0.7rem; color:#a08a94;">${coinsMsg}</small>`;
+    }
+
+    function updateUpsellUI() {
+      const show = document.getElementById('upsellCheck').checked;
+      document.getElementById('upsellMsg').style.display = show ? 'block' : 'none';
+      actualizarPrecioModal();
+    }
+
+    async function executePurchase() {
+      let cost = activeItem.price;
+      const isUp = activeItem.upsellPercent > 0 && document.getElementById('upsellCheck').checked;
+      if (isUp) {
+        cost = Math.round(activeItem.price * (1 + activeItem.upsellPercent / 100));
+      }
+
+      if (user.jeroCoins < cost) return mostrarMensaje("No tenés suficientes ✦ para este privilegio.");
+
+      let specsArray = [];
+      if (activeItem.campos && activeItem.campos.length > 0) {
+        activeItem.campos.forEach(f => {
+          const val = document.getElementById('f_' + f.replace(/\s/g, '')).value;
+          if (val) specsArray.push(`${f}: ${val}`);
+        });
+      }
+      if (isUp) {
+        const extraMsg = document.getElementById('upsellMsg').value;
+        if (extraMsg) specsArray.push(`Mensaje extra: ${extraMsg}`);
+      }
+      let specs = specsArray.join(', ');
+
+      user.jeroCoins -= cost;
+      document.getElementById('valCoins').innerText = user.jeroCoins;
+      closeM('modalBuy');
+      mostrarMensaje("¡Canje guardado exitosamente! ✦");
+      lanzarConfeti();
+
+      const li = document.createElement('li');
+      li.innerHTML = armarFraseOrganica(user.nombre, activeItem.name, specs);
+      document.getElementById('muroList').prepend(li);
+
+      await fetch(SCRIPT_URL + "?source=store", {
+        method: 'POST',
+        body: JSON.stringify({ action: "PURCHASE", user: user.nombre, item: activeItem.name, cost: cost, specs: specs })
+      });
+    }
+
+    // ---------- TOGGLE TIENDA ----------
+    async function toggleMasterSwitch() {
+      const newState = isStoreOpen ? "CLOSED" : "OPEN";
+      mostrarMensaje(newState === "CLOSED" ? "🔒 Cerrando tienda y archivando..." : "🔓 Abriendo tienda...");
+      const btn = document.getElementById('btnMasterToggle');
+      const originalText = btn.innerText;
+      btn.innerText = "⏳ Procesando...";
+
+      try {
+        await fetch(SCRIPT_URL + "?source=store", {
+          method: 'POST',
+          body: JSON.stringify({ action: "TOGGLE_STORE", state: newState })
+        });
+
+        if (newState === "CLOSED") {
+          globalLogs = [];
+          document.getElementById('muroList').innerHTML = '<li>✨ Tienda cerrada. Los canjes se archivaron. ✨</li>';
+          if (user && user.nombre === "Jeroviana") {
+            document.getElementById('adminLogsBody').innerHTML = '<tr><td colspan="3">Tienda cerrada - Compras archivadas</td></tr>';
+          }
+          isStoreOpen = false;
+        } else {
+          await recargarDatosAlAbrirTienda();
+          isStoreOpen = true;
+        }
+
+        btn.innerText = isStoreOpen ? "Tienda: ON" : "Tienda: OFF";
+        btn.classList.toggle('off', !isStoreOpen);
+        render();
+        mostrarMensaje(isStoreOpen ? "✨ Tienda abierta. ¡A canjear!" : "📦 Tienda cerrada. ¡Hasta la próxima!");
+      } catch (error) {
+        console.error(error);
+        mostrarMensaje("Error al cambiar estado. Revisa tu conexión.");
+      } finally {
+        btn.innerText = originalText;
+      }
+    }
+
+    async function recargarDatosAlAbrirTienda() {
+      try {
+        const resp = await fetch(SCRIPT_URL + "?source=store");
+        const data = await resp.json();
+        globalLogs = data.logs || [];
+        actualizarMuroYAdmin(globalLogs);
+        if (user && user.nombre !== "Jeroviana") {
+          const foundUser = data.usuarios.find(u => u.nombre === user.nombre);
+          if (foundUser) {
+            user.jeroCoins = foundUser.jeroCoins;
+            document.getElementById('valCoins').innerText = user.jeroCoins;
+          }
+        }
+      } catch (e) {
+        console.error("Error al recargar datos:", e);
+        mostrarMensaje("No se pudieron actualizar los datos. Recarga la página.");
+      }
+    }
+
+    // ---------- FILTROS ----------
+    function toggleMode(cat, btnId) {
+      if (isGuest) {
+        mostrarMensaje("Inicia sesión para cambiar los filtros de la tienda.");
+        return;
+      }
+      // Alternar el estado del modo seleccionado
+      activeModes[cat] = !activeModes[cat];
+      guardarFiltros();
+      actualizarBotonesModo();
+      render();
+    }
+
+    // ---------- CIERRE DE MES Y PERIODO ----------
+    async function closeMonth() {
+      if (confirm("⚠️ ¿Estás segura de cerrar el mes?\n\nEsto va a:\n✅ Sumar JeroCoins al podio (15/10/5) a TODAS las empatadas\n✅ Sumar +1 mes en podio\n✅ Cerrar la tienda automáticamente\n❌ NO mueve compras (eso ya se hace al apagar)\n\n¿Deseas continuar?")) {
+        mostrarMensaje("Cerrando mes... Procesando podio 🌸");
+        await fetch(SCRIPT_URL + "?source=store", { method: 'POST', body: JSON.stringify({ action: "CLOSE_MONTH" }) });
+        mostrarMensaje("✨ ¡Mes cerrado exitosamente! ✨");
+        setTimeout(() => location.reload(), 2000);
+      }
+    }
+
+    async function closePeriod() {
+      const esPrimerPeriodo = confirm("¿Estás cerrando el 1er periodo? (Aceptar = 1er periodo, Cancelar = 2do periodo)");
+      const periodo = esPrimerPeriodo ? 1 : 2;
+      const periodoTexto = periodo === 1 ? "1er" : "2do";
+      const year = new Date().getFullYear();
+
+      if (!confirm(`⚠️ CIERRE DE PERIODO ⚠️\n\nEstás cerrando el ${periodoTexto} periodo ${year}.\n\nEsto va a:\n✅ Crear un respaldo completo de la hoja JeroPoints como 'JeroPoints_${periodoTexto}Periodo_${year}'\n✅ Limpiar la hoja JeroPoints (se eliminarán todas las actividades y puntos)\n✅ Archivar los canjes de la tienda en HistorialCierre\n✅ Cerrar la tienda automáticamente\n\nLos JeroCoins y meses en podio NO se pierden.\n\n¿Deseas continuar?`)) {
+        return;
+      }
+
+      mostrarMensaje("Cerrando periodo... Archivando y limpiando 📅");
+      try {
+        const resp = await fetch(SCRIPT_URL + "?source=store", {
+          method: 'POST',
+          body: JSON.stringify({ action: "CLOSE_PERIOD", periodo: periodo })
+        });
+        const text = await resp.text();
+        mostrarMensaje(text);
+        setTimeout(() => location.reload(), 2500);
+      } catch (e) {
+        mostrarMensaje("Error al cerrar periodo. Revisa la consola.");
+        console.error(e);
+      }
+    }
+
+    // ---------- UTILIDADES ----------
+    function closeM(id) { document.getElementById(id).style.display = 'none'; }
+    function openHelp() { document.getElementById('modalHelp').style.display = 'flex'; }
+
+    function mostrarMensaje(t) {
+      const toast = document.getElementById("toastMsg");
+      toast.innerText = t;
+      toast.classList.add("show");
+      setTimeout(() => toast.classList.remove("show"), 3500);
+    }
+
+    function lanzarConfeti() {
+      const colores = ['#e91e63', '#d4af37', '#f8bbd0', '#00A859', '#00AFEF'];
+      for (let i = 0; i < 40; i++) {
+        let conf = document.createElement('div');
+        conf.className = 'confetti';
+        conf.style.left = Math.random() * 100 + 'vw';
+        conf.style.backgroundColor = colores[Math.floor(Math.random() * colores.length)];
+        conf.style.width = '8px';
+        conf.style.height = '8px';
+        conf.style.animationDuration = (Math.random() * 2 + 2) + 's';
+        document.body.appendChild(conf);
+        setTimeout(() => conf.remove(), 4000);
+      }
+    }
+
+    // ---------- INICIALIZAR ----------
+    init();
+  </script>
+</body>
+</html>
