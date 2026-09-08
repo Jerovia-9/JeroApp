@@ -998,9 +998,26 @@
       document.getElementById('rulesList').innerHTML = htmlContent;
       document.getElementById('rulesModal').classList.remove('hidden');
     }
-
+// ---------- SESIÓN ÚNICA ----------
+const storedUser = JSON.parse(localStorage.getItem('jeroUser'));
+if (storedUser && storedUser.user) {
+    // Saltar login overlay y usar este usuario
+    // Para JeroStore: oculta el auth overlay y asigna el usuario
+    document.getElementById('authOverlay').style.display = 'none';
+    user = {
+        nombre: storedUser.nombre,
+        alias: storedUser.user,
+        jeroCoins: 0 // se actualizará al cargar datos
+    };
+    isGuest = false;
+    document.getElementById('labelName').innerText = storedUser.nombre;
+    document.getElementById('jeroBadge').style.display = 'block';
+    // Cargar datos y renderizar sin login
+    init(); // pero modificamos init para que no pida login
+} else {
+    // Mostrar login normal
+}
     // ---------- INICIAR ----------
-    init();
   </script>
 </body>
 </html>
