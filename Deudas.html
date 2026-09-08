@@ -7,7 +7,7 @@
   <!-- Google Fonts -->
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;1,400&family=Montserrat:wght@300;400;500;600;700&display=swap" rel="stylesheet" />
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;1,400&family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet" />
   <style>
     * {
       margin: 0;
@@ -15,27 +15,26 @@
       box-sizing: border-box;
     }
     body {
-      font-family: 'Montserrat', sans-serif;
-      background: linear-gradient(145deg, #fdf6f9 0%, #fff0f5 100%);
+      font-family: 'Inter', sans-serif;
+      background: #f8f6f7;
       min-height: 100vh;
       display: flex;
       flex-direction: column;
       align-items: center;
       justify-content: center;
       padding: 2rem 1.5rem;
-      color: #2d2d2d;
+      color: #1a1a1a;
     }
     .rainbow-bar {
       width: 100%;
       max-width: 820px;
-      height: 6px;
+      height: 4px;
       border-radius: 20px 20px 0 0;
       background: linear-gradient(90deg,
           #D8303B, #F58634, #FFE61C, #00A859, #00AFEF, #0065A0, #727CB6);
       background-size: 300% 100%;
       animation: arcoirisMove 6s ease-in-out infinite alternate;
-      margin: 0 auto 0 auto;
-      box-shadow: 0 4px 20px rgba(216, 48, 59, 0.2);
+      opacity: 0.5;
     }
     @keyframes arcoirisMove {
       0% { background-position: 0% 50%; }
@@ -44,70 +43,64 @@
     .container {
       max-width: 820px;
       width: 100%;
-      background: rgba(255, 255, 255, 0.75);
-      backdrop-filter: blur(10px);
-      -webkit-backdrop-filter: blur(10px);
-      border-radius: 0 0 40px 40px;
-      box-shadow: 0 30px 60px -20px rgba(214, 51, 132, 0.25),
-                  0 10px 30px -10px rgba(0,0,0,0.05);
-      padding: 2.5rem 2.5rem 2rem;
-      border: 1px solid rgba(255, 255, 255, 0.5);
+      background: white;
+      border-radius: 0 0 32px 32px;
+      box-shadow: 0 10px 40px rgba(0,0,0,0.04);
+      padding: 2rem 2rem 1.5rem;
+      border: 1px solid #f0ecee;
     }
     .header {
       text-align: center;
-      margin-bottom: 2.5rem;
+      margin-bottom: 2rem;
     }
     .header .subtitle {
-      font-family: 'Montserrat', sans-serif;
+      font-family: 'Inter', sans-serif;
       font-weight: 400;
-      letter-spacing: 3px;
+      letter-spacing: 2px;
       text-transform: uppercase;
-      font-size: 0.75rem;
+      font-size: 0.7rem;
       color: #d63384;
-      background: rgba(214, 51, 132, 0.08);
+      background: rgba(214, 51, 132, 0.06);
       display: inline-block;
-      padding: 0.25rem 1.2rem;
-      border-radius: 50px;
-      margin-bottom: 0.75rem;
+      padding: 0.2rem 1.2rem;
+      border-radius: 30px;
+      margin-bottom: 0.5rem;
     }
     .header h1 {
       font-family: 'Playfair Display', serif;
       font-weight: 700;
-      font-size: 2.8rem;
+      font-size: 2.4rem;
       color: #1a1a1a;
       line-height: 1.1;
-      margin-bottom: 0.3rem;
+      margin-bottom: 0.2rem;
     }
     .header h1 span {
       background: linear-gradient(135deg, #d63384, #b82a6e);
       -webkit-background-clip: text;
       -webkit-text-fill-color: transparent;
-      background-clip: text;
     }
     .header .tagline {
-      font-family: 'Montserrat', sans-serif;
       font-weight: 300;
-      font-size: 1rem;
+      font-size: 0.9rem;
       color: #7a6a72;
-      letter-spacing: 0.5px;
-      margin-top: 0.25rem;
+      letter-spacing: 0.3px;
     }
     .header .tagline strong {
       font-weight: 600;
       color: #d63384;
     }
     .search-section {
-      background: rgba(255, 255, 255, 0.5);
-      border-radius: 30px;
-      padding: 2rem 1.8rem;
-      margin-bottom: 2rem;
-      box-shadow: inset 0 1px 4px rgba(255,255,255,0.8), 0 8px 20px rgba(214,51,132,0.06);
+      background: #faf8f9;
+      border-radius: 16px;
+      padding: 1.5rem;
+      margin-bottom: 1.5rem;
+      box-shadow: inset 0 1px 4px rgba(0,0,0,0.02);
     }
     .search-section p {
-      font-size: 0.95rem;
+      font-size: 0.9rem;
       font-weight: 400;
       color: #5a4a52;
-      margin-bottom: 1.2rem;
+      margin-bottom: 1rem;
     }
     .search-box {
       display: flex;
@@ -122,59 +115,45 @@
     }
     .input-wrapper input {
       width: 100%;
-      padding: 0.9rem 1.2rem 0.9rem 3rem;
-      border: 2px solid #f0dce4;
-      border-radius: 60px;
-      font-family: 'Montserrat', sans-serif;
-      font-size: 1rem;
+      padding: 0.7rem 1rem 0.7rem 2.8rem;
+      border: 1.5px solid #e8e2e5;
+      border-radius: 12px;
+      font-family: 'Inter', sans-serif;
+      font-size: 0.95rem;
       background: white;
-      transition: all 0.25s ease;
+      transition: 0.25s;
       outline: none;
-      color: #2d2d2d;
-      box-shadow: 0 2px 8px rgba(0,0,0,0.02);
+      color: #1a1a1a;
     }
     .input-wrapper input:focus {
       border-color: #d63384;
-      box-shadow: 0 0 0 6px rgba(214, 51, 132, 0.08), 0 4px 12px rgba(214,51,132,0.1);
+      box-shadow: 0 0 0 3px rgba(214,51,132,0.06);
     }
     .input-wrapper .icon {
       position: absolute;
-      left: 1.2rem;
+      left: 1rem;
       top: 50%;
       transform: translateY(-50%);
-      font-size: 1.2rem;
+      font-size: 1.1rem;
       opacity: 0.4;
       pointer-events: none;
-      transition: opacity 0.3s;
-    }
-    .input-wrapper input:focus + .icon,
-    .input-wrapper input:focus ~ .icon {
-      opacity: 0.8;
     }
     .btn-consultar {
       background: linear-gradient(135deg, #d63384, #b82a6e);
       color: white;
       border: none;
-      padding: 0.9rem 2.6rem;
-      border-radius: 60px;
-      font-family: 'Montserrat', sans-serif;
+      padding: 0.7rem 2rem;
+      border-radius: 12px;
+      font-family: 'Inter', sans-serif;
       font-weight: 600;
-      font-size: 1rem;
-      letter-spacing: 0.5px;
+      font-size: 0.9rem;
       cursor: pointer;
-      transition: all 0.25s ease;
-      box-shadow: 0 8px 20px rgba(214, 51, 132, 0.3);
-      display: inline-flex;
-      align-items: center;
-      gap: 0.5rem;
-      white-space: nowrap;
+      transition: 0.25s;
+      box-shadow: 0 4px 16px rgba(214,51,132,0.1);
     }
     .btn-consultar:hover {
-      transform: translateY(-3px) scale(1.02);
-      box-shadow: 0 14px 30px rgba(214, 51, 132, 0.4);
-    }
-    .btn-consultar:active {
-      transform: scale(0.96);
+      transform: translateY(-2px);
+      box-shadow: 0 8px 24px rgba(214,51,132,0.15);
     }
     .btn-consultar:disabled {
       opacity: 0.6;
@@ -188,10 +167,10 @@
     }
     .result-card {
       background: white;
-      border-radius: 28px;
-      padding: 2rem 2rem 1.8rem;
-      box-shadow: 0 12px 40px -12px rgba(0,0,0,0.08), 0 4px 12px rgba(214,51,132,0.04);
-      border: 1px solid rgba(214, 51, 132, 0.06);
+      border-radius: 16px;
+      padding: 1.5rem;
+      box-shadow: 0 4px 20px rgba(0,0,0,0.02);
+      border: 1px solid #f0ecee;
       animation: fadeSlideUp 0.5s ease forwards;
       text-align: left;
     }
@@ -203,22 +182,21 @@
       display: flex;
       align-items: center;
       gap: 1rem;
-      margin-bottom: 1.5rem;
-      border-bottom: 1px solid #f5e8ee;
-      padding-bottom: 1.2rem;
+      margin-bottom: 1.2rem;
+      border-bottom: 1px solid #f0ecee;
+      padding-bottom: 1rem;
     }
     .result-header .avatar {
-      width: 56px;
-      height: 56px;
+      width: 48px;
+      height: 48px;
       border-radius: 50%;
-      background: linear-gradient(135deg, #f8bbd0, #fce4ec);
+      background: #fce4ec;
       display: flex;
       align-items: center;
       justify-content: center;
-      font-size: 1.8rem;
+      font-size: 1.6rem;
       color: #d63384;
       flex-shrink: 0;
-      box-shadow: 0 4px 12px rgba(214,51,132,0.1);
     }
     .result-header .name-group {
       flex: 1;
@@ -226,27 +204,25 @@
     .result-header .name-group .nombre {
       font-family: 'Playfair Display', serif;
       font-weight: 700;
-      font-size: 1.8rem;
+      font-size: 1.4rem;
       color: #1a1a1a;
-      line-height: 1.1;
     }
     .result-header .name-group .label {
-      font-size: 0.7rem;
+      font-size: 0.65rem;
       text-transform: uppercase;
-      letter-spacing: 1px;
+      letter-spacing: 0.5px;
       color: #a08a94;
       font-weight: 500;
     }
     .status-badge {
       display: inline-flex;
       align-items: center;
-      gap: 0.4rem;
-      padding: 0.3rem 1rem;
-      border-radius: 50px;
-      font-size: 0.75rem;
+      gap: 0.3rem;
+      padding: 0.2rem 0.8rem;
+      border-radius: 30px;
+      font-size: 0.65rem;
       font-weight: 600;
       text-transform: uppercase;
-      letter-spacing: 0.5px;
       background: #e8f5e9;
       color: #2e7d32;
     }
@@ -261,27 +237,27 @@
     .result-body {
       display: grid;
       grid-template-columns: 1fr 1fr;
-      gap: 1.2rem;
+      gap: 1rem;
       margin-top: 0.5rem;
     }
     .result-body .item {
-      background: #faf5f8;
-      border-radius: 18px;
-      padding: 0.8rem 1.2rem;
+      background: #faf8f9;
+      border-radius: 12px;
+      padding: 0.7rem 1rem;
     }
     .result-body .item .label {
-      font-size: 0.65rem;
+      font-size: 0.6rem;
       text-transform: uppercase;
-      letter-spacing: 0.8px;
+      letter-spacing: 0.5px;
       color: #a08a94;
       font-weight: 500;
     }
     .result-body .item .value {
       font-family: 'Playfair Display', serif;
-      font-size: 1.4rem;
+      font-size: 1.2rem;
       font-weight: 700;
       color: #1a1a1a;
-      margin-top: 0.15rem;
+      margin-top: 0.1rem;
     }
     .result-body .item .value.deuda {
       color: #d63384;
@@ -291,39 +267,36 @@
       font-weight: 400;
     }
     .alert-box {
-      margin-top: 1.5rem;
-      padding: 1rem 1.4rem;
+      margin-top: 1rem;
+      padding: 0.8rem 1rem;
       background: #fff3f5;
-      border-left: 5px solid #d63384;
-      border-radius: 16px;
+      border-left: 4px solid #d63384;
+      border-radius: 8px;
       display: flex;
       align-items: center;
-      gap: 0.8rem;
+      gap: 0.5rem;
       font-weight: 500;
       color: #b82a6e;
-      font-size: 0.95rem;
-      box-shadow: inset 0 1px 4px rgba(214,51,132,0.04);
+      font-size: 0.85rem;
     }
     .alert-box .icono {
       font-size: 1.6rem;
     }
     .no-result {
       background: white;
-      border-radius: 28px;
-      padding: 2.5rem 1.8rem;
+      border-radius: 16px;
+      padding: 2rem;
       text-align: center;
-      box-shadow: 0 12px 40px -12px rgba(0,0,0,0.06);
       border: 1px dashed #e0cdd6;
-      animation: fadeSlideUp 0.4s ease forwards;
     }
     .no-result .icono {
-      font-size: 3rem;
+      font-size: 2.5rem;
       margin-bottom: 0.5rem;
-      opacity: 0.6;
+      opacity: 0.5;
     }
     .no-result p {
       color: #7a6a72;
-      font-size: 1rem;
+      font-size: 0.9rem;
     }
     .no-result p strong {
       color: #d63384;
@@ -331,9 +304,9 @@
     }
     .spinner {
       display: inline-block;
-      width: 40px;
-      height: 40px;
-      border: 4px solid #f3d9e4;
+      width: 32px;
+      height: 32px;
+      border: 3px solid #f3d9e4;
       border-radius: 50%;
       border-top-color: #d63384;
       animation: spin 0.8s linear infinite;
@@ -346,32 +319,32 @@
       display: flex;
       flex-direction: column;
       align-items: center;
-      gap: 0.6rem;
+      gap: 0.5rem;
       color: #7a6a72;
-      font-size: 0.95rem;
+      font-size: 0.9rem;
     }
     .footer {
       max-width: 820px;
       width: 100%;
       margin-top: 2rem;
       text-align: center;
-      font-size: 0.75rem;
-      font-weight: 400;
-      color: #b8a4ae;
-      letter-spacing: 0.8px;
-      border-top: 1px solid rgba(214, 51, 132, 0.08);
-      padding-top: 1.8rem;
+      font-size: 0.7rem;
+      color: #b8b0b4;
+      border-top: 1px solid #f0ecee;
+      padding: 1.2rem 1.5rem 0.5rem;
+      letter-spacing: 0.3px;
     }
     .footer .rainbow-dots {
       display: inline-flex;
-      gap: 6px;
-      margin-bottom: 0.5rem;
+      gap: 5px;
+      margin-bottom: 0.2rem;
     }
     .footer .rainbow-dots span {
-      width: 8px;
-      height: 8px;
+      width: 6px;
+      height: 6px;
       border-radius: 50%;
       display: inline-block;
+      opacity: 0.6;
     }
     .footer strong {
       color: #d63384;
@@ -379,14 +352,14 @@
     }
     @media (max-width: 640px) {
       .container {
-        padding: 1.5rem 1.2rem;
-        border-radius: 0 0 28px 28px;
+        padding: 1rem;
+        border-radius: 0 0 24px 24px;
       }
       .header h1 {
         font-size: 2rem;
       }
       .search-section {
-        padding: 1.5rem 1rem;
+        padding: 1rem;
       }
       .result-body {
         grid-template-columns: 1fr;
@@ -396,12 +369,12 @@
         flex-wrap: wrap;
       }
       .result-header .name-group .nombre {
-        font-size: 1.4rem;
+        font-size: 1.2rem;
       }
       .btn-consultar {
         width: 100%;
         justify-content: center;
-        padding: 0.9rem 1.5rem;
+        padding: 0.7rem 1.5rem;
       }
       .input-wrapper input {
         padding-left: 2.8rem;
@@ -418,12 +391,11 @@
     <header class="header">
       <div class="subtitle">✦ Asamblea Jerovia N°9 ✦</div>
       <h1>Estado de <span>Pagos</span></h1>
-      <!-- Cambio: tagline más claro -->
       <p class="tagline">Revisa tu <strong>deuda</strong> · Tesorería Jerovia</p>
     </header>
 
     <section class="search-section">
-      <p>🔍 Escribí tu nombre de usuario (la inicial de tu nombre + tu apellido en minusculas sin acento)</p>
+      <p>🔍 Escribí tu nombre de usuario (la inicial de tu nombre + tu apellido en minúsculas sin acento)</p>
       <div class="search-box">
         <div class="input-wrapper">
           <input type="text" id="nombre" placeholder="Ej: svolpe" autocomplete="off" />
@@ -450,27 +422,24 @@
     <p>
       Orden Internacional del Arcoíris para Niñas · <strong>Asamblea Jerovia N°9</strong> · Paraguay
     </p>
-    <p style="margin-top:0.2rem; opacity:0.5;">&copy; 2026 · Sol Isabella Volpe</p>
+    <p style="margin-top:0.2rem; opacity:0.4; font-size:0.6rem;">&copy; 2026 · Sol Isabella Volpe</p>
   </footer>
 
   <script>
     // ---------- CONFIGURACIÓN ----------
-    // Reemplaza esta URL con la de tu CSV publicado
     const urlCSV = "https://docs.google.com/spreadsheets/d/e/2PACX-1vQxE2Bne2Sg_YiMpskNCD0Ke1ac_tEDF-Ul86ScA3tx_gVZS6R6CowMsTlNJ3_VrXRKc9sLTkwi5sw4/pub?gid=0&single=true&output=csv";
 
-    // ---------- CORAZONES ALEATORIOS ----------
     const corazones = ['❤️', '🧡', '💛', '💚', '💙', '💜', '🖤', '🤍', '🤎', '💖', '💗', '💘', '💝'];
     function obtenerCorazonAleatorio() {
       return corazones[Math.floor(Math.random() * corazones.length)];
     }
 
-    // ---------- UTILIDADES ----------
     function normalizarTexto(texto) {
       return texto
         .toLowerCase()
         .normalize("NFD")
         .replace(/[\u0300-\u036f]/g, "")
-        .trim(); // eliminamos espacios alrededor
+        .trim();
     }
 
     function limpiarNumero(valor) {
@@ -482,7 +451,6 @@
       return isNaN(num) ? 0 : num;
     }
 
-    // Parser CSV mejorado para manejar comillas y espacios
     function parseCSV(texto) {
       const filas = [];
       let filaActual = [];
@@ -527,13 +495,11 @@
       }
 
       if (filas.length === 0) return { headers: [], rows: [] };
-      // Convertir encabezados a minúsculas y recortar espacios
       const headers = filas[0].map(h => h.trim().toLowerCase());
       const rows = filas.slice(1);
       return { headers, rows };
     }
 
-    // ---------- CARGA DE DATOS ----------
     async function cargarDatos() {
       try {
         const respuesta = await fetch(urlCSV);
@@ -544,7 +510,6 @@
         const { headers, rows } = parseCSV(texto);
         console.log("Encabezados detectados:", headers);
 
-        // Buscar columnas
         const idxNombre = headers.findIndex(h => h.includes('nombre'));
         const idxUser = headers.findIndex(h => h.includes('user'));
         const idxDeuda = headers.findIndex(h => h.includes('total deuda') || h.includes('total_deuda'));
@@ -574,7 +539,6 @@
       }
     }
 
-    // ---------- RENDER ----------
     function renderResultado(hermana, corazon, busquedaPorUser = true) {
       const div = document.getElementById('resultado');
 
@@ -583,8 +547,8 @@
           <div class="no-result">
             <div class="icono">🔎</div>
             <p>No encontramos a ninguna hermana con ese usuario.</p>
-            <p style="font-size:0.9rem; margin-top:0.3rem;">Verificá que tu <strong>nombre de usuario</strong> esté bien escrito (sin acentos, todo minúscula).</p>
-            <p style="font-size:0.8rem; margin-top:0.2rem; color:#b8a4ae;">Búsqueda por ${busquedaPorUser ? 'columna user' : 'nombre'}</p>
+            <p style="font-size:0.8rem; margin-top:0.3rem;">Verificá que tu <strong>nombre de usuario</strong> esté bien escrito (sin acentos, todo minúscula).</p>
+            <p style="font-size:0.7rem; margin-top:0.2rem; color:#b8a4ae;">Búsqueda por ${busquedaPorUser ? 'columna user' : 'nombre'}</p>
           </div>
         `;
         return;
@@ -658,7 +622,6 @@
       `;
     }
 
-    // ---------- LÓGICA PRINCIPAL ----------
     async function buscar() {
       const input = document.getElementById('nombre');
       const textoIngresado = input.value.trim();
@@ -689,11 +652,9 @@
         return;
       }
 
-      // Primero buscar por user
       let hermana = datos.find(h => normalizarTexto(h.user) === inputNormalizado);
       let busquedaPorUser = true;
 
-      // Si no se encuentra, buscar por nombre (fallback)
       if (!hermana) {
         hermana = datos.find(h => normalizarTexto(h.nombre) === inputNormalizado);
         busquedaPorUser = false;
@@ -706,7 +667,6 @@
       boton.textContent = 'Consultar';
     }
 
-    // ---------- EVENTOS ----------
     document.getElementById('btnBuscar').addEventListener('click', buscar);
 
     document.getElementById('nombre').addEventListener('keydown', (e) => {
