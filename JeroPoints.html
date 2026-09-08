@@ -1,0 +1,1006 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Jeropoints · Asamblea Jerovia N°9</title>
+  <!-- Google Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;1,400&family=Montserrat:wght@300;400;500;600;700&display=swap" rel="stylesheet" />
+  <style>
+    /* ---------- Reset y base ---------- */
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+    body {
+      font-family: 'Montserrat', sans-serif;
+      background: linear-gradient(145deg, #fdf6f9 0%, #fff0f5 100%);
+      min-height: 100vh;
+      color: #2d2d2d;
+      padding: 0;
+      padding-bottom: 100px; /* espacio para botones fijos */
+    }
+
+    /* ---------- Arcoíris animado ---------- */
+    .rainbow-bar {
+      width: 100%;
+      height: 6px;
+      background: linear-gradient(90deg,
+          #D8303B, #F58634, #FFE61C, #00A859, #00AFEF, #0065A0, #727CB6);
+      background-size: 300% 100%;
+      animation: arcoirisMove 6s ease-in-out infinite alternate;
+      box-shadow: 0 4px 20px rgba(216, 48, 59, 0.2);
+    }
+    @keyframes arcoirisMove {
+      0% { background-position: 0% 50%; }
+      100% { background-position: 100% 50%; }
+    }
+
+    /* ---------- Contenedor principal ---------- */
+    .container {
+      max-width: 820px;
+      margin: 0 auto;
+      padding: 1.5rem 1.5rem 1rem;
+      background: rgba(255, 255, 255, 0.75);
+      backdrop-filter: blur(10px);
+      -webkit-backdrop-filter: blur(10px);
+      border-radius: 0 0 40px 40px;
+      box-shadow: 0 30px 60px -20px rgba(214, 51, 132, 0.25),
+                  0 10px 30px -10px rgba(0,0,0,0.05);
+      border: 1px solid rgba(255, 255, 255, 0.5);
+      margin-top: 0;
+    }
+
+    /* ---------- Encabezado ---------- */
+    .header {
+      text-align: center;
+      margin-bottom: 0.5rem;
+      position: relative;
+    }
+    .header .subtitle {
+      font-family: 'Montserrat', sans-serif;
+      font-weight: 400;
+      letter-spacing: 3px;
+      text-transform: uppercase;
+      font-size: 0.75rem;
+      color: #d63384;
+      background: rgba(214, 51, 132, 0.08);
+      display: inline-block;
+      padding: 0.25rem 1.2rem;
+      border-radius: 50px;
+      margin-bottom: 0.5rem;
+    }
+    .header h1 {
+      font-family: 'Playfair Display', serif;
+      font-weight: 700;
+      font-size: 2.8rem;
+      color: #1a1a1a;
+      line-height: 1.1;
+      margin-bottom: 0.2rem;
+    }
+    .header h1 span {
+      background: linear-gradient(135deg, #d63384, #b82a6e);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+    }
+    .header .tagline {
+      font-family: 'Montserrat', sans-serif;
+      font-weight: 300;
+      font-size: 1rem;
+      color: #7a6a72;
+      letter-spacing: 0.5px;
+    }
+    .header .tagline strong {
+      font-weight: 600;
+      color: #d63384;
+    }
+
+    /* ---------- Buscador colapsable ---------- */
+    .buscador-wrapper {
+      position: relative;
+      display: flex;
+      justify-content: flex-end;
+      align-items: center;
+      margin-bottom: 0.5rem;
+      height: 0;
+      pointer-events: none;
+    }
+    .lupa-btn {
+      background: none;
+      border: none;
+      font-size: 1.4rem;
+      cursor: pointer;
+      padding: 0.2rem 0.5rem;
+      transition: transform 0.2s;
+      color: #7a6a72;
+      position: relative;
+      z-index: 10;
+      pointer-events: auto;
+      margin-top: -1.8rem;
+    }
+    .lupa-btn:hover {
+      transform: scale(1.1);
+      color: #d63384;
+    }
+    .buscador-container {
+      position: absolute;
+      top: 0;
+      right: 0;
+      left: 0;
+      background: white;
+      border-radius: 60px;
+      box-shadow: 0 8px 25px rgba(0,0,0,0.1);
+      padding: 0.4rem 0.4rem 0.4rem 1rem;
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+      transform: scaleY(0);
+      transform-origin: top center;
+      opacity: 0;
+      transition: transform 0.3s ease, opacity 0.3s ease;
+      pointer-events: none;
+      z-index: 20;
+      border: 1px solid #f0dce4;
+    }
+    .buscador-container.abierto {
+      transform: scaleY(1);
+      opacity: 1;
+      pointer-events: auto;
+    }
+    .buscador-container input {
+      flex: 1;
+      border: none;
+      outline: none;
+      font-family: 'Montserrat', sans-serif;
+      font-size: 0.95rem;
+      padding: 0.6rem 0;
+      background: transparent;
+      color: #2d2d2d;
+      min-width: 0;
+    }
+    .buscador-container input::placeholder {
+      color: #b8a4ae;
+    }
+    .cerrar-buscador {
+      background: none;
+      border: none;
+      font-size: 1.2rem;
+      cursor: pointer;
+      color: #b8a4ae;
+      padding: 0 0.5rem;
+      transition: color 0.2s;
+    }
+    .cerrar-buscador:hover {
+      color: #d63384;
+    }
+
+    /* ---------- Podio ---------- */
+    .podium-container {
+      display: flex;
+      justify-content: center;
+      align-items: flex-end;
+      gap: 8px;
+      margin: 0 auto 1.8rem auto;
+      height: 220px;
+      max-width: 500px;
+      padding: 0 10px;
+    }
+    .podium-step {
+      flex: 1;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      cursor: pointer;
+      transition: transform 0.2s;
+    }
+    .podium-step:hover {
+      transform: scale(1.05);
+    }
+    .podium-bar {
+      width: 100%;
+      border-radius: 12px 12px 0 0;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      color: white;
+      font-weight: bold;
+      box-shadow: 0 4px 20px rgba(0,0,0,0.08);
+      transition: all 0.2s;
+      font-family: 'Montserrat', sans-serif;
+    }
+    .podium-bar small {
+      font-size: 0.65rem;
+      font-weight: 300;
+      opacity: 0.8;
+    }
+    .step-1 { height: 130px; background: linear-gradient(145deg, #f5d77b, #d4af37); order: 2; }
+    .step-2 { height: 95px; background: linear-gradient(145deg, #e8e8e8, #b0b0b0); order: 1; }
+    .step-3 { height: 70px; background: linear-gradient(145deg, #e8b88a, #b87333); order: 3; }
+
+    .podium-name {
+      font-family: 'Playfair Display', serif;
+      font-weight: bold;
+      margin-bottom: 6px;
+      font-size: 1rem;
+      color: #333;
+      text-align: center;
+    }
+    .avatar {
+      width: 55px;
+      height: 55px;
+      border-radius: 50%;
+      background: white;
+      margin-bottom: -10px;
+      z-index: 2;
+      border: 3px solid white;
+      box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+      object-fit: cover;
+    }
+
+    /* ---------- Ranking ---------- */
+    .ranking-list {
+      max-width: 600px;
+      margin: 0 auto;
+      padding: 0 5px;
+    }
+    .sister-card {
+      background: white;
+      margin-bottom: 8px;
+      padding: 12px 20px;
+      border-radius: 50px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      cursor: pointer;
+      transition: 0.3s;
+      border: 1px solid #f0f0f0;
+      box-shadow: 0 2px 8px rgba(0,0,0,0.02);
+    }
+    .sister-card:hover {
+      transform: scale(1.02);
+      background: #fdeef4;
+      border-color: #f8bbd0;
+    }
+    .sister-card .pos {
+      color: #d63384;
+      font-weight: 600;
+      margin-right: 8px;
+    }
+    .sister-card .pts {
+      font-weight: 600;
+      color: #d63384;
+    }
+    .sister-card.destacada {
+      background: #fce4ec;
+      border: 2px solid #d63384;
+      box-shadow: 0 0 0 4px rgba(214,51,132,0.1);
+    }
+
+    /* ---------- Botones fijos ---------- */
+    .footer-btns {
+      position: fixed;
+      bottom: 20px;
+      left: 0;
+      width: 100%;
+      display: flex;
+      justify-content: center;
+      gap: 10px;
+      padding: 0 15px;
+      box-sizing: border-box;
+      z-index: 100;
+    }
+    .btn-fixed {
+      flex: 1;
+      max-width: 150px;
+      padding: 12px 8px;
+      border-radius: 30px;
+      font-family: 'Montserrat', sans-serif;
+      font-weight: 600;
+      font-size: 0.75rem;
+      cursor: pointer;
+      border: none;
+      color: white;
+      transition: all 0.25s ease;
+      text-align: center;
+      line-height: 1.2;
+      box-shadow: 0 6px 20px rgba(0,0,0,0.15);
+      letter-spacing: 0.3px;
+    }
+    .btn-fixed:hover {
+      transform: translateY(-3px) scale(1.02);
+      box-shadow: 0 10px 28px rgba(0,0,0,0.2);
+    }
+    .btn-earn {
+      background: linear-gradient(135deg, #4caf50, #388e3c);
+    }
+    .btn-hist {
+      background: linear-gradient(135deg, #d63384, #b82a6e);
+    }
+    .btn-lose {
+      background: linear-gradient(135deg, #f44336, #c62828);
+    }
+
+    /* ---------- Modales ---------- */
+    .modal-overlay {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: rgba(0, 0, 0, 0.35);
+      backdrop-filter: blur(5px);
+      -webkit-backdrop-filter: blur(5px);
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      z-index: 1000;
+      padding: 20px;
+    }
+    .modal-overlay.hidden {
+      display: none !important;
+    }
+    .modal-content {
+      background: white;
+      padding: 30px 25px;
+      border-radius: 28px;
+      width: 100%;
+      max-width: 420px;
+      max-height: 85vh;
+      overflow-y: auto;
+      position: relative;
+      box-shadow: 0 40px 80px -20px rgba(0,0,0,0.3);
+      border: 1px solid rgba(255,255,255,0.2);
+    }
+    .close-x {
+      position: absolute;
+      top: 15px;
+      right: 20px;
+      font-size: 1.8rem;
+      color: #ccc;
+      cursor: pointer;
+      transition: 0.2s;
+      line-height: 1;
+    }
+    .close-x:hover {
+      color: #d63384;
+      transform: rotate(90deg);
+    }
+    .modal-content h2 {
+      font-family: 'Playfair Display', serif;
+      font-weight: 700;
+      margin-bottom: 15px;
+      color: #1a1a1a;
+    }
+    .modal-content .sub {
+      font-size: 0.8rem;
+      color: #888;
+      margin-top: -5px;
+      margin-bottom: 15px;
+    }
+
+    /* ---------- Estilos del historial (timeline) ---------- */
+    .detail-container {
+      max-height: 400px;
+      overflow-y: auto;
+      padding-right: 5px;
+    }
+    .timeline {
+      position: relative;
+      padding-left: 30px;
+      margin: 10px 0;
+      text-align: left;
+    }
+    .timeline::before {
+      content: '';
+      position: absolute;
+      left: 10px;
+      top: 0;
+      width: 3px;
+      height: 100%;
+      background: #f8bbd0;
+      border-radius: 5px;
+    }
+    .timeline-item {
+      position: relative;
+      margin-bottom: 20px;
+    }
+    .timeline-dot {
+      position: absolute;
+      left: -27px;
+      top: 6px;
+      width: 14px;
+      height: 14px;
+      background: white;
+      border: 3px solid #d63384;
+      border-radius: 50%;
+      z-index: 2;
+    }
+    .timeline-date {
+      font-size: 0.7rem;
+      font-weight: 600;
+      color: #b3b3b3;
+      margin-bottom: 4px;
+      display: block;
+    }
+    .timeline-content {
+      background: #fff;
+      padding: 12px 15px;
+      border-radius: 15px;
+      border: 1px solid #f0f0f0;
+      box-shadow: 0 3px 10px rgba(0,0,0,0.02);
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      cursor: default;
+      transition: 0.2s;
+    }
+    .timeline-content:hover {
+      background: #fffafb;
+      border-color: #f8bbd0;
+    }
+    .timeline-motivo {
+      font-size: 0.85rem;
+      color: #555;
+      font-weight: 500;
+      flex: 1;
+      padding-right: 10px;
+    }
+    .timeline-pts {
+      font-weight: 700;
+      font-size: 0.95rem;
+      white-space: nowrap;
+    }
+
+    /* Reclamo (WhatsApp) */
+    .reclamo-box {
+      margin-top: 8px;
+      display: none;
+      text-align: right;
+      animation: slideDown 0.3s ease-out forwards;
+    }
+    .reclamo-box.show {
+      display: block;
+    }
+    .btn-whatsapp-mini {
+      display: inline-block;
+      background: #25D366;
+      color: white;
+      text-decoration: none;
+      padding: 8px 16px;
+      border-radius: 20px;
+      font-weight: 600;
+      font-size: 0.75rem;
+      box-shadow: 0 4px 12px rgba(37, 211, 102, 0.3);
+      transition: 0.2s;
+    }
+    .btn-whatsapp-mini:hover {
+      background: #128C7E;
+      transform: scale(1.03);
+    }
+
+    @keyframes slideDown {
+      from { opacity: 0; transform: translateY(-10px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+
+    /* ---------- Reglas ---------- */
+    .lista-reglas {
+      list-style: none;
+      padding: 0;
+      margin: 0;
+    }
+    .item-regla {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      background: #f9f9f9;
+      margin-bottom: 12px;
+      padding: 14px 16px;
+      border-radius: 15px;
+      transition: transform 0.2s;
+      border: 1px solid #eee;
+    }
+    .item-regla:hover {
+      transform: scale(1.02);
+      background: #fff;
+      box-shadow: 0 4px 10px rgba(0,0,0,0.05);
+    }
+    .regla-texto {
+      font-family: 'Montserrat', sans-serif;
+      font-size: 0.85rem;
+      color: #444;
+      text-align: left;
+      flex: 1;
+      padding-right: 10px;
+      line-height: 1.3;
+      font-weight: 500;
+    }
+    .badge-pos {
+      font-family: 'Montserrat', sans-serif;
+      font-weight: 700;
+      font-size: 0.9rem;
+      background: #e8f5e9;
+      color: #2e7d32;
+      padding: 6px 14px;
+      border-radius: 12px;
+      white-space: nowrap;
+    }
+    .badge-neg {
+      font-family: 'Montserrat', sans-serif;
+      font-weight: 700;
+      font-size: 0.9rem;
+      background: #ffebee;
+      color: #c62828;
+      padding: 6px 14px;
+      border-radius: 12px;
+      white-space: nowrap;
+    }
+
+    /* ---------- Footer institucional ---------- */
+    .footer {
+      max-width: 820px;
+      margin: 1.5rem auto 0;
+      padding: 1.2rem 1.5rem 0.5rem;
+      text-align: center;
+      font-size: 0.8rem;
+      font-weight: 400;
+      letter-spacing: 0.5px;
+      border-top: 1px solid rgba(214, 51, 132, 0.08);
+      line-height: 1.8;
+      color: #b8a4ae;
+    }
+    .footer .rainbow-dots {
+      display: inline-flex;
+      gap: 6px;
+      margin-bottom: 0.5rem;
+    }
+    .footer .rainbow-dots span {
+      width: 8px;
+      height: 8px;
+      border-radius: 50%;
+      display: inline-block;
+    }
+    .footer .linea-orden {
+      color: #7a6a72;
+      font-weight: 400;
+    }
+    .footer .linea-asamblea {
+      color: #d63384;
+      font-weight: 600;
+    }
+    .footer .linea-jurisdiccion {
+      color: #1a5276;
+      font-weight: 500;
+    }
+    .footer .credito {
+      margin-top: 0.3rem;
+      opacity: 0.6;
+      font-size: 0.7rem;
+      color: #b8a4ae;
+    }
+
+    /* ---------- Loading ---------- */
+    .loading {
+      text-align: center;
+      padding: 100px 20px;
+      font-family: 'Montserrat', sans-serif;
+      color: #d63384;
+      font-weight: 300;
+      font-size: 1.2rem;
+    }
+    .loading span {
+      display: inline-block;
+      animation: pulse 1.5s ease-in-out infinite;
+    }
+    @keyframes pulse {
+      0%, 100% { opacity: 0.4; }
+      50% { opacity: 1; }
+    }
+
+    /* ---------- Responsive ---------- */
+    @media (max-width: 640px) {
+      .container { padding: 1rem 0.8rem; }
+      .header h1 { font-size: 2.2rem; }
+      .podium-container { height: 180px; gap: 6px; }
+      .step-1 { height: 100px; }
+      .step-2 { height: 75px; }
+      .step-3 { height: 55px; }
+      .podium-name { font-size: 0.8rem; }
+      .avatar { width: 45px; height: 45px; }
+      .footer-btns .btn-fixed { font-size: 0.65rem; padding: 10px 4px; max-width: 120px; }
+      .modal-content { padding: 20px; }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- Arcoíris superior -->
+  <div class="rainbow-bar"></div>
+
+  <!-- Contenedor principal -->
+  <div class="container">
+
+    <!-- Encabezado -->
+    <header class="header">
+      <div class="subtitle">✦ Asamblea Jerovia N°9 ✦</div>
+      <h1><span>Jeropoints</span></h1>
+      <p class="tagline">Destacate por tu esfuerzo
+    </header>
+
+    <!-- Buscador colapsable -->
+    <div class="buscador-wrapper">
+      <button class="lupa-btn" onclick="toggleBuscador()" aria-label="Buscar hermana">
+        <span class="lupa-icon">🔍</span>
+      </button>
+      <div class="buscador-container" id="buscadorContainer">
+        <input type="text" id="buscador" placeholder="Buscar hermana..." oninput="filtrarRanking()" />
+        <button class="cerrar-buscador" onclick="toggleBuscador()">✕</button>
+      </div>
+    </div>
+
+    <!-- Podio y ranking -->
+    <div id="mainContent">
+      <div class="loading"><span>✨ Abriendo el Libro de Puntos... ✨</span></div>
+    </div>
+
+  </div>
+
+  <!-- Footer institucional -->
+  <footer class="footer">
+    <div class="rainbow-dots">
+      <span style="background:#D8303B;"></span>
+      <span style="background:#F58634;"></span>
+      <span style="background:#FFE61C;"></span>
+      <span style="background:#00A859;"></span>
+      <span style="background:#00AFEF;"></span>
+      <span style="background:#0065A0;"></span>
+      <span style="background:#727CB6;"></span>
+    </div>
+    <p>
+      <span class="linea-orden">Orden Internacional del Arcoíris para Niñas</span> · 
+      <span class="linea-asamblea">Asamblea Jerovia N°9</span> · 
+      <span class="linea-jurisdiccion">Gran Jurisdicción de Paraguay</span>
+    </p>
+    <p class="credito">© 2026 · Sol Isabella Volpe</p>
+  </footer>
+
+  <!-- Botones fijos -->
+  <div class="footer-btns">
+    <button class="btn-fixed btn-earn" onclick="openRules('earn')">Cómo ganar</button>
+    <button class="btn-fixed btn-hist" onclick="openGlobalHistory()">Historial</button>
+    <button class="btn-fixed btn-lose" onclick="openRules('lose')">Cómo perder</button>
+  </div>
+
+  <!-- Modales -->
+  <div id="rulesModal" class="modal-overlay hidden" onclick="this.classList.add('hidden')">
+    <div class="modal-content" onclick="event.stopPropagation()">
+      <span class="close-x" onclick="document.getElementById('rulesModal').classList.add('hidden')">&times;</span>
+      <h2 id="rulesTitle"></h2>
+      <div id="rulesList" class="detail-container"></div>
+    </div>
+  </div>
+
+  <div id="historyModal" class="modal-overlay hidden" onclick="this.classList.add('hidden')">
+    <div class="modal-content" onclick="event.stopPropagation()">
+      <span class="close-x" onclick="document.getElementById('historyModal').classList.add('hidden')">&times;</span>
+      <h2 id="histTitle"></h2>
+      <div id="histBody" class="detail-container"></div>
+    </div>
+  </div>
+
+  <div id="globalHistoryModal" class="modal-overlay hidden" onclick="this.classList.add('hidden')">
+    <div class="modal-content" onclick="event.stopPropagation()">
+      <span class="close-x" onclick="document.getElementById('globalHistoryModal').classList.add('hidden')">&times;</span>
+      <h2 style="color: #d63384;">Puntos Asignados</h2>
+      <p class="sub">Tocá un punto si no te lo sumaron</p>
+      <div id="globalHistBody" class="detail-container"></div>
+    </div>
+  </div>
+
+  <script>
+    // ---------- CONFIGURACIÓN ----------
+    const SCRIPT_URL = "https://script.google.com/macros/s/AKfycbzMI0KX6hJnyxMAWU2v-S72UebJ4QK_PI7_lxGaimYozyDKxzV5nEDOcnb5mcRyhjRm/exec";
+
+    let sisters = [];
+    let realSisters = [];
+    let globalHistoryData = [];
+    let adminData = null; // Aquí guardaremos { telefono, reglasGanar, reglasPerder }
+
+    // ---------- INICIO ----------
+    async function init() {
+      try {
+        const r = await fetch(SCRIPT_URL);
+        const rawData = await r.json();
+
+        // Usuarios
+        const usuarios = rawData.usuarios || rawData;
+        sisters = usuarios.map(s => ({
+          ...s,
+          totalPuntos: s.puntos || 0,
+          detalles: s.detalles || []
+        }));
+        globalHistoryData = rawData.historialGlobal || [];
+        realSisters = sisters.filter(s => s.nombre && !s.nombre.toLowerCase().includes('punto'));
+
+        // Admin (configuración)
+        adminData = rawData.admin || null;
+        if (adminData) {
+          console.log('✅ Datos de Admin cargados:', adminData);
+        } else {
+          console.warn('⚠️ No se encontraron datos de Admin, usando valores por defecto.');
+        }
+
+        render();
+      } catch (e) {
+        console.error(e);
+        document.getElementById('mainContent').innerHTML = "<p style='text-align:center; padding:50px; color:#d63384;'>Error al conectar. Verifica la consola.</p>";
+      }
+    }
+
+    // ---------- RENDER ----------
+    function render() {
+      const main = document.getElementById('mainContent');
+      const sorted = [...realSisters].sort((a, b) => b.totalPuntos - a.totalPuntos);
+
+      // Podio (top 3)
+      let podHTML = `<div class="podium-container" id="pod">`;
+      [1, 0, 2].forEach(idx => {
+        const s = sorted[idx];
+        if (!s) return;
+        const fotoUrl = s.foto && s.foto.trim() !== "" ? s.foto : `https://ui-avatars.com/api/?name=${encodeURIComponent(s.nombre)}&background=f8bbd0&color=fff`;
+        podHTML += `
+          <div class="podium-step" onclick="showSisterHistory('${s.nombre.replace(/'/g, "\\'")}')">
+            <div class="podium-name">${s.nombre}</div>
+            <img src="${fotoUrl}" class="avatar" onerror="this.src='https://ui-avatars.com/api/?name=${encodeURIComponent(s.nombre)}&background=f8bbd0&color=fff'">
+            <div class="podium-bar step-${idx+1}"><span>${s.totalPuntos}</span><small>PTS</small></div>
+          </div>`;
+      });
+      podHTML += `</div>`;
+      main.innerHTML = podHTML;
+
+      // Ranking (resto)
+      const restantes = sorted.slice(3);
+      let listHTML = `<div class="ranking-list" id="list">`;
+      restantes.forEach((s, i) => {
+        const pos = i + 4;
+        listHTML += `
+          <div class="sister-card" data-nombre="${s.nombre}" onclick="showSisterHistory('${s.nombre.replace(/'/g, "\\'")}')">
+            <span><span class="pos">${pos}.</span> ${s.nombre}</span>
+            <span class="pts">${s.totalPuntos} pts</span>
+          </div>`;
+      });
+      listHTML += `</div>`;
+      main.innerHTML += listHTML;
+
+      destacarUsuarioPorURL();
+    }
+
+    // ---------- BUSCADOR COLAPSABLE ----------
+    function toggleBuscador() {
+      const container = document.getElementById('buscadorContainer');
+      container.classList.toggle('abierto');
+      if (container.classList.contains('abierto')) {
+        setTimeout(() => {
+          document.getElementById('buscador').focus();
+        }, 100);
+      } else {
+        document.getElementById('buscador').value = '';
+        filtrarRanking();
+      }
+    }
+
+    document.addEventListener('click', function(e) {
+      const wrapper = document.querySelector('.buscador-wrapper');
+      const container = document.getElementById('buscadorContainer');
+      if (container.classList.contains('abierto') && wrapper && !wrapper.contains(e.target)) {
+        toggleBuscador();
+      }
+    });
+
+    document.addEventListener('keydown', function(e) {
+      if (e.key === 'Escape') {
+        const container = document.getElementById('buscadorContainer');
+        if (container.classList.contains('abierto')) {
+          toggleBuscador();
+        }
+      }
+    });
+
+    function filtrarRanking() {
+      const busqueda = document.getElementById('buscador').value.toLowerCase().trim();
+      const cards = document.querySelectorAll('.sister-card');
+      cards.forEach(card => {
+        const nombre = card.getAttribute('data-nombre').toLowerCase();
+        if (nombre.includes(busqueda) || busqueda === '') {
+          card.style.display = 'flex';
+        } else {
+          card.style.display = 'none';
+        }
+      });
+    }
+
+    // ---------- DESTACAR USUARIO POR URL ----------
+    function destacarUsuarioPorURL() {
+      const params = new URLSearchParams(window.location.search);
+      const user = params.get('user');
+      if (user) {
+        const normalizedUser = user.toLowerCase().trim();
+        const found = realSisters.find(s => s.nombre.toLowerCase() === normalizedUser);
+        if (found) {
+          const cards = document.querySelectorAll('.sister-card');
+          cards.forEach(card => {
+            const nombre = card.getAttribute('data-nombre');
+            if (nombre && nombre.toLowerCase() === found.nombre.toLowerCase()) {
+              card.classList.add('destacada');
+            }
+          });
+        }
+      }
+    }
+
+    // ---------- HISTORIAL INDIVIDUAL ----------
+    function showSisterHistory(nombre) {
+      const activeSister = realSisters.find(s => s.nombre === nombre);
+      if (!activeSister) return;
+
+      const body = document.getElementById('histBody');
+      document.getElementById('histTitle').innerText = activeSister.nombre;
+      document.getElementById('histTitle').style.color = '#d63384';
+
+      let h = `<div class="timeline">`;
+      const detallesOrdenados = [...activeSister.detalles].reverse();
+
+      if (detallesOrdenados.length === 0) {
+        h = `<p style="padding:20px; color:#999;">Sin registros de puntos.</p>`;
+      } else {
+        detallesOrdenados.forEach(d => {
+          const pVal = parseFloat(d.Puntos) || 0;
+          const motivo = d.Motivo || 'Sin motivo';
+          const fechaVal = d.Fecha;
+
+          const c = pVal >= 0 ? "#2e7d32" : "#c62828";
+          let fechaSimple = '---';
+          if (fechaVal) {
+            try {
+              const fechaDate = new Date(fechaVal);
+              if (!isNaN(fechaDate.getTime())) {
+                fechaSimple = fechaDate.toLocaleDateString('es-ES', { day: 'numeric', month: 'short' });
+              }
+            } catch (e) { }
+          }
+
+          h += `
+            <div class="timeline-item">
+              <div class="timeline-dot"></div>
+              <span class="timeline-date">${fechaSimple}</span>
+              <div class="timeline-content" style="cursor:default;">
+                <span class="timeline-motivo">${motivo}</span>
+                <span class="timeline-pts" style="color:${c}">${pVal > 0 ? '+' : ''}${pVal}</span>
+              </div>
+            </div>`;
+        });
+        h += `</div>`;
+      }
+
+      body.innerHTML = h;
+      document.getElementById('historyModal').classList.remove('hidden');
+    }
+
+    // ---------- HISTORIAL GLOBAL ----------
+    function openGlobalHistory() {
+      const body = document.getElementById('globalHistBody');
+
+      if (globalHistoryData.length === 0) {
+        body.innerHTML = `<p style="padding:20px; color:#999;">Sin puntos asignados globalmente.</p>`;
+        document.getElementById('globalHistoryModal').classList.remove('hidden');
+        return;
+      }
+
+      // Obtener número de teléfono dinámico (si existe)
+      const telefono = adminData && adminData.telefono ? adminData.telefono : '595981614237';
+
+      let h = `<div class="timeline">`;
+      [...globalHistoryData].reverse().forEach((d, index) => {
+        const pVal = parseFloat(d.Puntos) || 0;
+        const motivo = d.Motivo || 'Sin motivo';
+        const fechaVal = d.Fecha;
+
+        const c = pVal >= 0 ? "#2e7d32" : "#c62828";
+        let fechaSimple = '---';
+        if (fechaVal) {
+          try {
+            const fechaDate = new Date(fechaVal);
+            if (!isNaN(fechaDate.getTime())) {
+              fechaSimple = fechaDate.toLocaleDateString('es-ES', { day: 'numeric', month: 'short' });
+            }
+          } catch (e) { }
+        }
+
+        const msjWhatsApp = encodeURIComponent(`¡Hola! Quería avisar que no me sumaron mis Jeropoints correspondientes a: "${motivo}" de la fecha ${fechaSimple}.`);
+
+        h += `
+          <div class="timeline-item">
+            <div class="timeline-dot"></div>
+            <span class="timeline-date">${fechaSimple}</span>
+            <div class="timeline-content" onclick="toggleReclamo(${index})">
+              <span class="timeline-motivo">${motivo}</span>
+              <span class="timeline-pts" style="color:${c}">${pVal > 0 ? '+' : ''}${pVal}</span>
+            </div>
+            <div id="reclamo-${index}" class="reclamo-box">
+              <a href="https://wa.me/${telefono}?text=${msjWhatsApp}" target="_blank" class="btn-whatsapp-mini">
+                ¡No me sumaron este punto! 📲
+              </a>
+            </div>
+          </div>`;
+      });
+      h += `</div>`;
+      body.innerHTML = h;
+      document.getElementById('globalHistoryModal').classList.remove('hidden');
+    }
+
+    function toggleReclamo(index) {
+      const el = document.getElementById(`reclamo-${index}`);
+      if (el) el.classList.toggle('show');
+    }
+
+    // ---------- REGLAS (dinámicas desde Admin) ----------
+    function openRules(t) {
+      const isEarn = t === 'earn';
+
+      // Obtener reglas desde adminData o usar valores por defecto
+      let reglas = [];
+      if (adminData) {
+        reglas = isEarn ? adminData.reglasGanar : adminData.reglasPerder;
+      }
+
+      // Si no hay reglas en adminData, usar los arrays por defecto
+      if (!reglas || reglas.length === 0) {
+        reglas = isEarn ? [
+          { desc: "Destacar en trabajo", pts: 10 },
+          { desc: "Saber parlamento de memoria en una iniciación", pts: 30 },
+          { desc: "Saber parlamento de memoria en una ceremonia pública", pts: 15 },
+          { desc: "Aportar para actividades de recaudación", pts: 10 },
+          { desc: "Donar en filantropías", pts: 10 },
+          { desc: "Participar de una actividad realizada un día diferente a sábado", pts: 10 },
+          { desc: "Asistir a una ceremonia pública arcoiris", pts: 5 }
+        ] : [
+          { desc: "Llegada tardía", pts: -3 },
+          { desc: "Ausencia injustificada", pts: -10 },
+          { desc: "No participar de una dinámica obligatoria", pts: -5 },
+          { desc: "Comportamiento inapropiado", pts: -10 },
+          { desc: "Interrumpir", pts: -5 }
+        ];
+      }
+
+      document.getElementById('rulesTitle').innerText = isEarn ? "Cómo ganar puntos" : "Cómo perder puntos";
+      document.getElementById('rulesTitle').style.color = isEarn ? "#2e7d32" : "#c62828";
+
+      const badgeClass = isEarn ? "badge-pos" : "badge-neg";
+
+      let htmlContent = `<div class="lista-reglas">`;
+      reglas.forEach(rule => {
+        const pts = rule.pts;
+        const signo = pts > 0 ? '+' : '';
+        const colorBorde = isEarn ? '#4caf50' : '#c62828';
+        htmlContent += `
+          <div class="item-regla" style="border-left: 5px solid ${colorBorde};">
+            <span class="regla-texto">${rule.desc}</span>
+            <span class="${badgeClass}">${signo}${pts}</span>
+          </div>`;
+      });
+      htmlContent += `</div>`;
+
+      document.getElementById('rulesList').innerHTML = htmlContent;
+      document.getElementById('rulesModal').classList.remove('hidden');
+    }
+
+    // ---------- INICIAR ----------
+    init();
+  </script>
+</body>
+</html>
