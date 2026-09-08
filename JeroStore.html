@@ -7,7 +7,7 @@
   <!-- Google Fonts -->
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;1,400&family=Montserrat:wght@300;400;500;600;700&display=swap" rel="stylesheet" />
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;1,400&family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet" />
   <style>
     /* ---------- Reset y base ---------- */
     * {
@@ -16,10 +16,10 @@
       box-sizing: border-box;
     }
     body {
-      font-family: 'Montserrat', sans-serif;
-      background: linear-gradient(145deg, #fdf6f9 0%, #fff0f5 100%);
+      font-family: 'Inter', sans-serif;
+      background: #f8f6f7;
       min-height: 100vh;
-      color: #2d2d2d;
+      color: #1a1a1a;
       padding: 0;
       padding-bottom: 100px;
     }
@@ -27,12 +27,12 @@
     /* ---------- Arcoíris animado ---------- */
     .rainbow-bar {
       width: 100%;
-      height: 6px;
+      height: 4px;
       background: linear-gradient(90deg,
           #D8303B, #F58634, #FFE61C, #00A859, #00AFEF, #0065A0, #727CB6);
       background-size: 300% 100%;
       animation: arcoirisMove 6s ease-in-out infinite alternate;
-      box-shadow: 0 4px 20px rgba(216, 48, 59, 0.2);
+      opacity: 0.5;
     }
     @keyframes arcoirisMove {
       0% { background-position: 0% 50%; }
@@ -44,13 +44,10 @@
       max-width: 1100px;
       margin: 0 auto;
       padding: 1.5rem 1.5rem 1rem;
-      background: rgba(255, 255, 255, 0.75);
-      backdrop-filter: blur(10px);
-      -webkit-backdrop-filter: blur(10px);
-      border-radius: 0 0 40px 40px;
-      box-shadow: 0 30px 60px -20px rgba(214, 51, 132, 0.25),
-                  0 10px 30px -10px rgba(0,0,0,0.05);
-      border: 1px solid rgba(255, 255, 255, 0.5);
+      background: white;
+      border-radius: 0 0 32px 32px;
+      box-shadow: 0 10px 40px rgba(0,0,0,0.04);
+      border: 1px solid #f0ecee;
       margin-top: 0;
     }
 
@@ -83,7 +80,7 @@
     }
     .btn-help {
       background: none;
-      border: 2px solid #f0dce4;
+      border: 1.5px solid #e8e2e5;
       border-radius: 50%;
       width: 36px;
       height: 36px;
@@ -113,7 +110,7 @@
     }
     .user-name {
       font-weight: 600;
-      color: #2d2d2d;
+      color: #1a1a1a;
     }
     .jero-badge {
       background: #fff9e6;
@@ -129,10 +126,10 @@
     /* ---------- Muro ---------- */
     .muro-container {
       background: white;
-      border-radius: 20px;
+      border-radius: 16px;
       padding: 1rem 1.2rem;
       margin: 1rem 0;
-      border: 1px solid #f0dce4;
+      border: 1px solid #f0ecee;
       box-shadow: 0 4px 15px rgba(0,0,0,0.02);
     }
     .muro-container h3 {
@@ -164,7 +161,7 @@
       font-weight: 600;
       padding: 12px;
       background: #fce4ec;
-      border-radius: 16px;
+      border-radius: 12px;
       margin: 1rem 0;
       display: none;
     }
@@ -186,12 +183,12 @@
     .auth-card {
       background: white;
       padding: 2.5rem 2rem;
-      border-radius: 30px;
-      box-shadow: 0 20px 60px rgba(0,0,0,0.08);
+      border-radius: 24px;
+      box-shadow: 0 20px 60px rgba(0,0,0,0.06);
       width: 90%;
       max-width: 340px;
       text-align: center;
-      border: 1px solid #f0dce4;
+      border: 1px solid #f0ecee;
     }
     .auth-card h2 {
       font-family: 'Playfair Display', serif;
@@ -207,23 +204,23 @@
       width: 100%;
       padding: 12px 16px;
       margin: 6px 0;
-      border: 2px solid #f0dce4;
-      border-radius: 60px;
-      font-family: 'Montserrat', sans-serif;
+      border: 1.5px solid #e8e2e5;
+      border-radius: 12px;
+      font-family: 'Inter', sans-serif;
       font-size: 0.9rem;
       outline: none;
       transition: 0.2s;
     }
     .auth-card input:focus {
       border-color: #d63384;
-      box-shadow: 0 0 0 4px rgba(214,51,132,0.08);
+      box-shadow: 0 0 0 3px rgba(214,51,132,0.06);
     }
     .btn-main {
       background: linear-gradient(135deg, #d63384, #b82a6e);
       color: white;
       border: none;
       padding: 12px;
-      border-radius: 60px;
+      border-radius: 12px;
       font-weight: 600;
       cursor: pointer;
       width: 100%;
@@ -232,7 +229,7 @@
     }
     .btn-main:hover {
       transform: translateY(-2px);
-      box-shadow: 0 8px 20px rgba(214,51,132,0.3);
+      box-shadow: 0 8px 20px rgba(214,51,132,0.15);
     }
     .btn-guest {
       background: none;
@@ -247,7 +244,7 @@
     /* ---------- Admin bar ---------- */
     .admin-bar {
       background: white;
-      border-radius: 20px;
+      border-radius: 16px;
       padding: 1.2rem 1.5rem;
       margin: 1rem 0;
       border: 2px solid #f8bbd0;
@@ -278,7 +275,7 @@
     .toggle.active {
       background: #f8bbd0;
       border-color: #d63384;
-      color: #2d2d2d;
+      color: #1a1a1a;
     }
     .toggle-master {
       background: #00A859;
@@ -291,8 +288,8 @@
     .admin-table-container {
       max-height: 200px;
       overflow-y: auto;
-      border: 1px solid #f0dce4;
-      border-radius: 12px;
+      border: 1px solid #f0ecee;
+      border-radius: 8px;
     }
     .admin-table {
       width: 100%;
@@ -321,8 +318,8 @@
     }
     .card {
       background: white;
-      border-radius: 20px;
-      border: 1px solid #f0dce4;
+      border-radius: 16px;
+      border: 1px solid #f0ecee;
       display: flex;
       flex-direction: column;
       box-shadow: 0 4px 15px rgba(0,0,0,0.02);
@@ -365,20 +362,20 @@
     .card-info.show {
       max-height: 200px;
       padding: 1rem;
-      border-top: 1px solid #f0dce4;
+      border-top: 1px solid #f0ecee;
     }
     .card-footer {
       padding: 0.8rem 1rem;
       background: #faf5f8;
-      border-top: 1px solid #f0dce4;
-      border-radius: 0 0 20px 20px;
+      border-top: 1px solid #f0ecee;
+      border-radius: 0 0 16px 16px;
     }
     .btn-price {
       width: 100%;
       background: white;
-      border: 2px solid #f8bbd0;
+      border: 1.5px solid #f8bbd0;
       padding: 10px;
-      border-radius: 60px;
+      border-radius: 12px;
       font-weight: 700;
       color: #d63384;
       cursor: pointer;
@@ -404,7 +401,7 @@
       left: 0;
       width: 100%;
       height: 100%;
-      background: rgba(0, 0, 0, 0.3);
+      background: rgba(0, 0, 0, 0.2);
       backdrop-filter: blur(4px);
       display: none;
       justify-content: center;
@@ -415,13 +412,13 @@
     .modal-content {
       background: white;
       padding: 2rem 1.8rem;
-      border-radius: 30px;
+      border-radius: 24px;
       width: 100%;
       max-width: 400px;
       max-height: 90vh;
       overflow-y: auto;
-      box-shadow: 0 30px 60px rgba(0,0,0,0.15);
-      border-top: 6px solid #d63384;
+      box-shadow: 0 20px 60px rgba(0,0,0,0.06);
+      border-top: 4px solid #d63384;
     }
     .modal-content h2 {
       font-family: 'Playfair Display', serif;
@@ -441,21 +438,21 @@
     .modal-content input {
       width: 100%;
       padding: 10px 14px;
-      border: 2px solid #f0dce4;
-      border-radius: 60px;
-      font-family: 'Montserrat', sans-serif;
+      border: 1.5px solid #e8e2e5;
+      border-radius: 12px;
+      font-family: 'Inter', sans-serif;
       font-size: 0.9rem;
       outline: none;
       transition: 0.2s;
     }
     .modal-content input:focus {
       border-color: #d63384;
-      box-shadow: 0 0 0 4px rgba(214,51,132,0.08);
+      box-shadow: 0 0 0 3px rgba(214,51,132,0.06);
     }
     .descripcion-modal {
       background: #fce4ec;
       padding: 12px 16px;
-      border-radius: 16px;
+      border-radius: 12px;
       font-size: 0.85rem;
       color: #5a4a52;
       margin: 10px 0;
@@ -478,7 +475,7 @@
       padding: 12px;
       background: #fff9fb;
       border: 1px solid #f8bbd0;
-      border-radius: 16px;
+      border-radius: 12px;
       display: none;
     }
     .upsell-section.show {
@@ -502,41 +499,38 @@
       margin: 2rem auto 0;
       padding: 1.2rem 1.5rem 0.5rem;
       text-align: center;
-      font-size: 0.8rem;
-      font-weight: 400;
-      letter-spacing: 0.5px;
-      border-top: 1px solid rgba(214, 51, 132, 0.08);
-      line-height: 1.8;
-      color: #b8a4ae;
+      font-size: 0.7rem;
+      color: #b8b0b4;
+      border-top: 1px solid #f0ecee;
+      line-height: 1.6;
     }
     .footer .rainbow-dots {
       display: inline-flex;
-      gap: 6px;
-      margin-bottom: 0.5rem;
+      gap: 5px;
+      margin-bottom: 0.2rem;
     }
     .footer .rainbow-dots span {
-      width: 8px;
-      height: 8px;
+      width: 6px;
+      height: 6px;
       border-radius: 50%;
       display: inline-block;
+      opacity: 0.6;
     }
     .footer .linea-orden {
-      color: #7a6a72;
-      font-weight: 400;
+      color: #b0a8ac;
     }
     .footer .linea-asamblea {
       color: #d63384;
-      font-weight: 600;
+      font-weight: 500;
     }
     .footer .linea-jurisdiccion {
       color: #1a5276;
-      font-weight: 500;
+      font-weight: 400;
     }
     .footer .credito {
-      margin-top: 0.3rem;
-      opacity: 0.6;
-      font-size: 0.7rem;
-      color: #b8a4ae;
+      opacity: 0.4;
+      font-size: 0.6rem;
+      margin-top: 0.2rem;
     }
 
     /* ---------- Toast y confeti ---------- */
@@ -546,7 +540,7 @@
       background: #d63384;
       color: white;
       text-align: center;
-      border-radius: 60px;
+      border-radius: 30px;
       padding: 14px 24px;
       position: fixed;
       z-index: 9999;
@@ -557,7 +551,7 @@
       transition: 0.3s;
       font-weight: 600;
       font-size: 0.9rem;
-      box-shadow: 0 8px 30px rgba(214,51,132,0.3);
+      box-shadow: 0 8px 30px rgba(214,51,132,0.15);
     }
     .toast.show {
       visibility: visible;
@@ -578,7 +572,7 @@
 
     /* ---------- Responsive ---------- */
     @media (max-width: 640px) {
-      .container { padding: 1rem 0.8rem; }
+      .container { padding: 1rem; }
       h1 { font-size: 1.6rem; }
       .card { width: 100%; }
     }
@@ -726,11 +720,21 @@
     let user = null;
     let isGuest = true;
     let isStoreOpen = true;
-    // Estado inicial: para invitados, todos los modos activos para que vean todo
     let activeModes = { normal: true, publica: true, dinamica: true, panchos: true, always: true };
     let activeItem = null;
     let globalLogs = [];
     let catalogItems = [];
+
+    // ---------- SESIÓN ÚNICA ----------
+    const storedUser = JSON.parse(localStorage.getItem('jeroUser'));
+    if (storedUser && storedUser.user) {
+      // Ocultar login y usar el usuario de localStorage
+      document.getElementById('authOverlay').style.display = 'none';
+      user = { nombre: storedUser.nombre, alias: storedUser.user, jeroCoins: 0 };
+      isGuest = false;
+      document.getElementById('labelName').innerText = storedUser.nombre;
+      document.getElementById('jeroBadge').style.display = 'block';
+    }
 
     // ---------- FUNCIONES DE ADMIN ----------
     function cargarFiltrosGuardados() {
@@ -739,7 +743,6 @@
       if (guardados) {
         try {
           const filtros = JSON.parse(guardados);
-          // Solo cargar los filtros que existan en activeModes
           Object.keys(activeModes).forEach(key => {
             if (key !== 'always' && filtros[key] !== undefined) {
               activeModes[key] = filtros[key];
@@ -779,7 +782,6 @@
         return getCatalogoDefecto();
       }
 
-      // Mapeo exacto de categorías (coincide con los nombres en la hoja Admin)
       const categoriaMap = {
         "Reunion Regular": "normal",
         "Dinamica": "dinamica",
@@ -811,7 +813,6 @@
       return validItems;
     }
 
-    // Catálogo por defecto (fallback)
     function getCatalogoDefecto() {
       return [
         { id: 1, name: "Mi tema", price: 5, cat: 'normal', desc: "Elegí una música que sonará durante la reunión del sábado.", campos: ['Canción'], campoExtra: '', upsellPercent: 0 },
@@ -858,7 +859,6 @@
 
         globalLogs = data.logs || [];
 
-        // Si es invitada, todos los modos activos para que vea todo
         if (isGuest) {
           activeModes = { normal: true, publica: true, dinamica: true, panchos: true, always: true };
           actualizarBotonesModo();
@@ -866,6 +866,8 @@
           render();
         } else {
           cargarFiltrosGuardados();
+          actualizarMuroYAdmin(globalLogs);
+          render();
         }
       } catch (e) {
         console.error(e);
@@ -929,7 +931,6 @@
       document.getElementById('authOverlay').style.display = 'none';
       isGuest = true;
       user = null;
-      // Para invitados, todos los modos activos
       activeModes = { normal: true, publica: true, dinamica: true, panchos: true, always: true };
       actualizarBotonesModo();
       try {
@@ -980,12 +981,10 @@
       }
       document.getElementById('storeClosedMsg').style.display = 'none';
 
-      // Para invitados: mostrar todos los items sin filtrar
       let items;
       if (isGuest) {
         items = catalogItems;
       } else {
-        // Para usuarios logueados: aplicar filtros según activeModes
         items = catalogItems.filter(i => {
           if (i.cat === 'always') return true;
           return activeModes[i.cat] === true;
@@ -1190,7 +1189,6 @@
         mostrarMensaje("Inicia sesión para cambiar los filtros de la tienda.");
         return;
       }
-      // Alternar el estado del modo seleccionado
       activeModes[cat] = !activeModes[cat];
       guardarFiltros();
       actualizarBotonesModo();
@@ -1257,23 +1255,9 @@
         setTimeout(() => conf.remove(), 4000);
       }
     }
-// ---------- SESIÓN ÚNICA ----------
-const storedUser = JSON.parse(localStorage.getItem('jeroUser'));
-if (storedUser && storedUser.user) {
-    // Ocultar login y usar el usuario de localStorage
-    document.getElementById('authOverlay').style.display = 'none';
-    // Asignar el usuario (las variables varían según la página)
-    // Para JeroStore:
-    user = { nombre: storedUser.nombre, alias: storedUser.user, jeroCoins: 0 };
-    isGuest = false;
-    document.getElementById('labelName').innerText = storedUser.nombre;
-    document.getElementById('jeroBadge').style.display = 'block';
-    // Luego cargar datos sin login
-    init();
-} else {
-    // Mostrar login normal
-}
+
     // ---------- INICIALIZAR ----------
+    init();
   </script>
 </body>
 </html>
